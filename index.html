@@ -1,2010 +1,1909 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bingo Casino Elite - Sistema Completo 90 Números</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #0c1c0c;
-            --secondary: #051005;
-            --gold: #d4af37;
-            --gold-light: #ffd700;
-            --red: #ff4757;
-            --green: #2ecc71;
-            --blue: #3498db;
-            --purple: #9b59b6;
-            --orange: #e67e22;
-            --casino-red: #ff3838;
-            --casino-green: #00b894;
-            --casino-blue: #0984e3;
-            --dark-bg: #0a0e0a;
-            --card-bg: #1a251a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0a180a 0%, #030903 100%);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(32, 32, 32, 0.15) 0%, transparent 40%),
-                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
-        }
-
-        .container {
-            max-width: 1800px;
-            margin: 0 auto;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Header Estilizado */
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(20, 30, 20, 0.95), rgba(10, 15, 10, 0.95));
-            border-radius: 25px;
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.8),
-                0 0 80px rgba(212, 175, 55, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 0 1px rgba(212, 175, 55, 0.2);
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 2px solid transparent;
-            border-radius: 25px;
-            background: linear-gradient(45deg, var(--casino-red), var(--gold), var(--casino-green), var(--casino-blue), var(--casino-red));
-            background-size: 400% 400%;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: borderGlow 6s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        h1 {
-            color: var(--gold-light);
-            font-size: 3.8rem;
-            text-shadow: 
-                0 0 40px rgba(255, 215, 0, 0.8),
-                0 0 80px rgba(255, 215, 0, 0.4),
-                0 2px 8px rgba(0, 0, 0, 0.8);
-            margin-bottom: 15px;
-            letter-spacing: 4px;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--gold-light), #fff 30%, var(--gold-light) 70%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: textShine 4s ease-in-out infinite alternate;
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes textShine {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.4rem;
-            color: #ddd;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 300;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 15px 25px;
-            border-radius: 15px;
-            border-left: 4px solid var(--gold);
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Layout Principal */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 1200px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Seção da Roleta Moderna */
-        .roulette-section {
-            background: linear-gradient(135deg, rgba(15, 25, 15, 0.97), rgba(5, 10, 5, 0.97));
-            border-radius: 25px;
-            padding: 35px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.9),
-                0 0 100px rgba(212, 175, 55, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-        }
-
-        .roulette-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 2px solid transparent;
-            border-radius: 25px;
-            background: linear-gradient(45deg, var(--green), var(--blue), var(--purple));
-            background-size: 400% 400%;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: borderGlow 8s ease-in-out infinite;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: var(--gold-light);
-            margin-bottom: 25px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-
-        /* Container da Roleta Moderna */
-        .roulette-container {
-            perspective: 1500px;
-            width: 100%;
-            height: 500px;
-            position: relative;
-            margin: 30px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .roulette-wheel {
-            width: 420px;
-            height: 420px;
-            position: relative;
-            transition: transform 5s cubic-bezier(0.17, 0.67, 0.21, 0.99);
-            transform-style: preserve-3d;
-        }
-
-        .roulette-wheel-inner {
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(
-                circle at center,
-                #1a1a1a 0%,
-                #111 20%,
-                #000 70%
-            );
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                inset 0 0 100px rgba(0, 0, 0, 0.95),
-                0 0 80px rgba(212, 175, 55, 0.5),
-                0 0 150px rgba(212, 175, 55, 0.3),
-                0 0 0 4px rgba(212, 175, 55, 0.3);
-            border: 12px solid #222;
-            transform-style: preserve-3d;
-        }
-
-        .roulette-numbers {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            transform-style: preserve-3d;
-        }
-
-        .roulette-number {
-            position: absolute;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.3rem;
-            color: white;
-            transform-origin: center;
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 
-                0 4px 15px rgba(0, 0, 0, 0.6),
-                inset 0 2px 4px rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            z-index: 2;
-            transform-style: preserve-3d;
-        }
-
-        .roulette-number.red {
-            background: linear-gradient(135deg, var(--casino-red), #ff6b6b);
-        }
-
-        .roulette-number.blue {
-            background: linear-gradient(135deg, var(--casino-blue), #74b9ff);
-        }
-
-        .roulette-number.green {
-            background: linear-gradient(135deg, var(--casino-green), #55efc4);
-        }
-
-        .roulette-number.gold {
-            background: linear-gradient(135deg, var(--gold), #ffeaa7);
-        }
-
-        .roulette-number:hover {
-            transform: translateZ(20px) scale(1.1);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-        }
-
-        .roulette-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, #000 0%, #111 30%, #222 100%);
-            border-radius: 50%;
-            z-index: 10;
-            border: 8px solid var(--gold);
-            box-shadow: 
-                inset 0 0 40px rgba(255, 215, 0, 0.4),
-                0 0 60px rgba(0, 0, 0, 0.9),
-                0 0 0 4px rgba(212, 175, 55, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: centerPulse 3s infinite alternate;
-        }
-
-        @keyframes centerPulse {
-            0% { box-shadow: inset 0 0 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(0, 0, 0, 0.9), 0 0 0 4px rgba(212, 175, 55, 0.3); }
-            100% { box-shadow: inset 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2), 0 0 0 4px rgba(212, 175, 55, 0.6); }
-        }
-
-        .current-number {
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: var(--gold-light);
-            text-shadow: 
-                0 0 40px rgba(255, 215, 0, 0.9),
-                0 0 80px rgba(255, 215, 0, 0.5),
-                0 0 120px rgba(255, 215, 0, 0.3);
-            animation: numberGlow 2s infinite alternate;
-        }
-
-        @keyframes numberGlow {
-            0% { 
-                transform: scale(1); 
-                text-shadow: 0 0 40px rgba(255, 215, 0, 0.9),
-                             0 0 80px rgba(255, 215, 0, 0.5);
-            }
-            100% { 
-                transform: scale(1.05); 
-                text-shadow: 0 0 50px rgba(255, 215, 0, 1),
-                             0 0 100px rgba(255, 215, 0, 0.7),
-                             0 0 150px rgba(255, 215, 0, 0.4);
-            }
-        }
-
-        .roulette-pointer {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-top: 50px solid var(--casino-red);
-            z-index: 20;
-            filter: drop-shadow(0 0 15px rgba(255, 56, 56, 0.9));
-            animation: pointerPulse 1.5s infinite alternate;
-        }
-
-        @keyframes pointerPulse {
-            0% { 
-                border-top-color: var(--casino-red);
-                filter: drop-shadow(0 0 15px rgba(255, 56, 56, 0.9));
-            }
-            100% { 
-                border-top-color: var(--gold);
-                filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.9));
-            }
-        }
-
-        /* Anel externo da roleta */
-        .roulette-ring {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, 
-                var(--casino-red) 0%,
-                var(--gold) 25%,
-                var(--casino-green) 50%,
-                var(--casino-blue) 75%,
-                var(--casino-red) 100%);
-            background-size: 400% 400%;
-            animation: ringRotate 10s linear infinite;
-            z-index: 1;
-            opacity: 0.3;
-            filter: blur(10px);
-        }
-
-        @keyframes ringRotate {
-            0% { transform: rotate(0deg); background-position: 0% 50%; }
-            100% { transform: rotate(360deg); background-position: 100% 50%; }
-        }
-
-        .roulette-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-            width: 100%;
-        }
-
-        /* Botões Estilizados */
-        .btn {
-            padding: 16px 32px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.7s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(-2px) scale(1.02);
-        }
-
-        .btn-casino {
-            background: linear-gradient(135deg, var(--casino-red), #ff6b6b);
-            color: white;
-            box-shadow: 0 8px 25px rgba(255, 56, 56, 0.4);
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold), #ffeaa7);
-            color: #000;
-            font-weight: 800;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-green {
-            background: linear-gradient(135deg, var(--casino-green), #55efc4);
-            color: white;
-            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
-        }
-
-        .btn-blue {
-            background: linear-gradient(135deg, var(--casino-blue), #74b9ff);
-            color: white;
-            box-shadow: 0 8px 25px rgba(9, 132, 227, 0.4);
-        }
-
-        .btn-purple {
-            background: linear-gradient(135deg, var(--purple), #a29bfe);
-            color: white;
-            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.4);
-        }
-
-        /* Painel de Números Moderno */
-        .numbers-panel {
-            background: linear-gradient(135deg, rgba(15, 25, 15, 0.97), rgba(5, 10, 5, 0.97));
-            border-radius: 25px;
-            padding: 35px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.9),
-                0 0 100px rgba(212, 175, 55, 0.2);
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-        }
-
-        .numbers-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 2px solid transparent;
-            border-radius: 25px;
-            background: linear-gradient(45deg, var(--orange), var(--purple), var(--blue));
-            background-size: 400% 400%;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: borderGlow 8s ease-in-out infinite;
-        }
-
-        .numbers-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .numbers-stats {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .stat-badge {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-        }
-
-        .stat-badge:hover {
-            transform: translateY(-3px);
-            border-color: var(--gold);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .numbers-grid {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .numbers-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-
-        .number-ball {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, rgba(42, 74, 42, 0.9), rgba(26, 58, 26, 0.9));
-            border: 3px solid #8b7355;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .number-ball::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .number-ball:hover::before {
-            opacity: 1;
-        }
-
-        .number-ball:hover:not(.called) {
-            transform: scale(1.1);
-            border-color: var(--gold);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .number-ball.called {
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: #000;
-            border-color: var(--gold-light);
-            transform: scale(1.15) translateY(-5px);
-            box-shadow: 
-                0 8px 25px rgba(212, 175, 55, 0.7),
-                0 0 50px rgba(212, 175, 55, 0.4);
-            animation: ballGlow 2s infinite alternate;
-            z-index: 2;
-        }
-
-        @keyframes ballGlow {
-            0% { 
-                transform: scale(1.15) translateY(-5px);
-                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.7),
-                            0 0 50px rgba(212, 175, 55, 0.4);
-            }
-            100% { 
-                transform: scale(1.2) translateY(-8px);
-                box-shadow: 0 12px 35px rgba(212, 175, 55, 0.9),
-                            0 0 80px rgba(212, 175, 55, 0.6);
-            }
-        }
-
-        .ball-letter {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* Timer de giro */
-        .spin-timer {
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px 20px;
-            border-radius: 25px;
-            border: 2px solid var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 5;
-            backdrop-filter: blur(10px);
-        }
-
-        .timer-value {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--gold-light);
-            min-width: 40px;
-            text-align: center;
-        }
-
-        /* Seção de Cartelas */
-        .cards-section {
-            background: linear-gradient(135deg, rgba(15, 25, 15, 0.97), rgba(5, 10, 5, 0.97));
-            border-radius: 25px;
-            padding: 35px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.9),
-                0 0 100px rgba(212, 175, 55, 0.2);
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-        }
-
-        .cards-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 2px solid transparent;
-            border-radius: 25px;
-            background: linear-gradient(45deg, var(--red), var(--orange), var(--gold));
-            background-size: 400% 400%;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: borderGlow 8s ease-in-out infinite;
-        }
-
-        /* Restante do CSS permanece similar... */
-        /* (O restante do CSS mantém o mesmo padrão de qualidade, mas omiti por questão de tamanho) */
-
-        /* Progress Bar Moderna */
-        .progress-container {
-            width: 100%;
-            margin: 30px 0;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 16px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, 
-                var(--casino-red), 
-                var(--gold), 
-                var(--casino-green),
-                var(--casino-blue));
-            border-radius: 8px;
-            transition: width 0.8s ease;
-            position: relative;
-            overflow: hidden;
-            background-size: 400% 100%;
-            animation: progressGradient 4s linear infinite;
-        }
-
-        @keyframes progressGradient {
-            0% { background-position: 0% 0; }
-            100% { background-position: 400% 0; }
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progressShine 3s infinite;
-        }
-
-        @keyframes progressShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .roulette-wheel {
-                width: 320px;
-                height: 320px;
-            }
-            
-            .current-number {
-                font-size: 3rem;
-            }
-            
-            .roulette-center {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* Animações para roleta girando */
-        @keyframes spinBlur {
-            0% { filter: blur(0px); }
-            50% { filter: blur(2px); }
-            100% { filter: blur(0px); }
-        }
-
-        .spinning {
-            animation: spinBlur 0.1s linear infinite;
-        }
-
-        /* Efeito de partículas para giro */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 50%;
-            animation: particleFloat 1s ease-out forwards;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty));
-                opacity: 0;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Cartelas de Bingo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface2: #293548;
+    --border: #334155;
+    --accent1: #f59e0b;
+    --accent2: #10b981;
+    --accent3: #6366f1;
+    --accent4: #f43f5e;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --card-bg: #ffffff;
+    --radius: 14px;
+    --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    background-image: radial-gradient(ellipse at 20% 20%, rgba(99,102,241,0.12) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 80%, rgba(245,158,11,0.08) 0%, transparent 60%);
+  }
+
+  header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-bottom: 2px solid var(--accent1);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  .logo-ball {
+    width: 44px; height: 44px;
+    background: radial-gradient(circle at 35% 35%, var(--accent1), #b45309);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(245,158,11,0.5);
+    flex-shrink: 0;
+  }
+
+  .logo-text { font-family: 'Fredoka One', cursive; font-size: 26px; color: var(--accent1); letter-spacing: 1px; }
+  .logo-sub { font-size: 12px; color: var(--text-muted); margin-top: -4px; }
+
+  .header-right { margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+  .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .badge span { color: var(--accent1); font-weight: 800; font-size: 16px; }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 28px 16px; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .panel-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    color: var(--accent1);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    align-items: end;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group input, .form-group select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--accent1);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+  }
+
+  .btn {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .btn:active { transform: scale(0.96); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent1), #d97706);
+    color: #0f172a;
+    box-shadow: 0 4px 16px rgba(245,158,11,0.35);
+  }
+  .btn-primary:hover { box-shadow: 0 6px 20px rgba(245,158,11,0.5); transform: translateY(-1px); }
+
+  .btn-success {
+    background: linear-gradient(135deg, var(--accent2), #059669);
+    color: white;
+    box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+  }
+  .btn-success:hover { box-shadow: 0 6px 20px rgba(16,185,129,0.5); transform: translateY(-1px); }
+
+  .btn-danger {
+    background: linear-gradient(135deg, var(--accent4), #be123c);
+    color: white;
+    box-shadow: 0 4px 16px rgba(244,63,94,0.3);
+  }
+  .btn-danger:hover { box-shadow: 0 6px 20px rgba(244,63,94,0.5); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--border);
+    color: var(--text-muted);
+  }
+  .btn-outline:hover { border-color: var(--accent1); color: var(--accent1); }
+
+  .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ── CARTELAS PREVIEW ── */
+  .cards-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .bingo-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+
+  .bingo-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+
+  .card-header {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+  }
+
+  .bingo-letter {
+    padding: 10px 4px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    color: white;
+    letter-spacing: 1px;
+  }
+
+  .bingo-letter:nth-child(1) { background: #e11d48; }
+  .bingo-letter:nth-child(2) { background: #d97706; }
+  .bingo-letter:nth-child(3) { background: #15803d; }
+  .bingo-letter:nth-child(4) { background: #1d4ed8; }
+  .bingo-letter:nth-child(5) { background: #7c3aed; }
+
+  .card-body { padding: 0; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: none;
+  }
+
+  .card-cell {
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    color: #1e293b;
+    aspect-ratio: 1;
+    min-height: 42px;
+    transition: background 0.25s, transform 0.25s;
+    position: relative;
+  }
+
+  .card-cell.free {
+    background: #fef3c7;
+    color: #b45309;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+  }
+
+  .card-cell.marked {
+    background: #dcfce7;
+    color: #15803d;
+    position: relative;
+  }
+
+  .card-cell.marked::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #22c55e, #15803d);
+    opacity: 0.85;
+    z-index: 0;
+  }
+
+  .card-cell.marked span {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-weight: 900;
+  }
+
+  /* Célula que faz parte de linha/coluna/diagonal completa */
+  .card-cell.line-win {
+    background: #fef9c3;
+  }
+
+  .card-cell.line-win::after {
+    background: radial-gradient(circle at 35% 35%, #facc15, #b45309);
+    box-shadow: 0 0 6px rgba(250,204,21,0.7);
+  }
+
+  .card-cell.free.marked::after {
+    background: radial-gradient(circle at 35% 35%, #f59e0b, #b45309);
+  }
+
+  .bingo-card.has-bingo {
+    outline: 3px solid #f59e0b;
+    box-shadow: 0 0 0 4px rgba(245,158,11,0.35), 0 12px 32px rgba(0,0,0,0.5);
+  }
+
+  .bingo-card.has-bingo .card-footer {
+    background: linear-gradient(90deg, #fef3c7, #fde68a);
+  }
+
+  .bingo-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    font-family: 'Fredoka One', cursive;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    animation: popIn 0.4s ease;
+  }
+
+  .card-cell:nth-child(5n+1) { border-left: none; }
+  .card-cell:nth-last-child(-n+5) { border-bottom: none; }
+
+  .card-footer {
+    background: #f8fafc;
+    padding: 8px;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+  }
+
+  .card-number {
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .card-delete {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .card-delete:hover { background: #fee2e2; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+  .empty-state .icon { font-size: 64px; margin-bottom: 16px; }
+  .empty-state h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+
+  /* ── TOAST ── */
+  .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; flex-direction: column; gap: 8px; }
+
+  .toast {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    box-shadow: var(--shadow);
+    animation: slideIn 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 320px;
+  }
+
+  .toast.success { border-left: 4px solid var(--accent2); }
+  .toast.error { border-left: 4px solid var(--accent4); }
+  .toast.info { border-left: 4px solid var(--accent3); }
+
+  @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; transform: translateX(100px); } }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: var(--shadow);
+    animation: popIn 0.25s ease;
+  }
+
+  @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  .modal h2 { font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--accent1); margin-bottom: 16px; }
+
+  /* ── LOADING ── */
+  .loading-bar {
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 12px;
+    display: none;
+  }
+  .loading-bar.show { display: block; }
+  .loading-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent3));
+    border-radius: 2px;
+    animation: loadPulse 1.2s ease-in-out infinite;
+  }
+  @keyframes loadPulse { 0%,100% { width: 20%; margin-left: 0; } 50% { width: 60%; margin-left: 20%; } }
+
+  /* ── PAGINATION ── */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .page-btn {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--border);
+    background: var(--surface2);
+    color: var(--text-muted);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .page-btn:hover, .page-btn.active {
+    border-color: var(--accent1);
+    color: var(--accent1);
+    background: rgba(245,158,11,0.1);
+  }
+
+  /* ── GLOBO DE SORTEIO ── */
+  .globe-modal .modal {
+    max-width: 560px;
+    text-align: center;
+  }
+
+  .globe-wrap {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 20px;
+  }
+
+  .globe-svg {
+    width: 220px;
+    height: 220px;
+    filter: drop-shadow(0 8px 32px rgba(245,158,11,0.5));
+  }
+
+  .globe-ball-display {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .globe-current-letter {
+    font-family: 'Fredoka One', cursive;
+    font-size: 28px;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .globe-current-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 52px;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+
+  @keyframes globeSpin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .globe-spinning .globe-inner-group {
+    animation: globeSpin 0.5s linear infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .drawn-balls-wrap {
+    margin-top: 12px;
+  }
+
+  .drawn-balls-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .drawn-balls-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    max-height: 120px;
+    overflow-y: auto;
+    padding: 4px;
+  }
+
+  .drawn-ball {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+    animation: popIn 0.3s ease;
+  }
+
+  .drawn-ball[data-col="0"] { background: radial-gradient(circle at 35% 35%, #f43f5e, #9f1239); }
+  .drawn-ball[data-col="1"] { background: radial-gradient(circle at 35% 35%, #f59e0b, #92400e); }
+  .drawn-ball[data-col="2"] { background: radial-gradient(circle at 35% 35%, #10b981, #065f46); }
+  .drawn-ball[data-col="3"] { background: radial-gradient(circle at 35% 35%, #3b82f6, #1e3a8a); }
+  .drawn-ball[data-col="4"] { background: radial-gradient(circle at 35% 35%, #a78bfa, #4c1d95); }
+
+  .globe-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .globe-stats {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  .globe-stats span { color: var(--accent1); font-weight: 800; }
+
+  /* ── REGRAS DE BINGO ── */
+  .bingo-rules-wrap {
+    margin: 14px 0 4px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .bingo-rules-toggle {
+    width: 100%;
+    background: var(--surface2);
+    border: none;
+    padding: 11px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.18s;
+  }
+
+  .bingo-rules-toggle:hover { background: var(--border); color: var(--text); }
+
+  .rules-chevron {
+    font-size: 10px;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .rules-chevron.open { transform: rotate(180deg); }
+
+  .bingo-rules-body {
+    display: none;
+    padding: 12px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .bingo-rules-body.open { display: block; }
+
+  .bingo-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .rule-btn {
+    background: var(--surface2);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 6px 8px;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-muted);
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .rule-btn:hover {
+    border-color: var(--accent3);
+    color: var(--text);
+  }
+
+  .rule-btn.active {
+    border-color: var(--accent1);
+    background: rgba(245,158,11,0.1);
+    color: var(--accent1);
+  }
+
+  .rule-btn svg {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  .rule-btn-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .rule-active-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245,158,11,0.15);
+    border: 1px solid rgba(245,158,11,0.4);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent1);
+    margin-bottom: 6px;
+  }
+
+  .last-ball-announce {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    color: var(--accent1);
+    min-height: 28px;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── PRINT / PDF STYLES ── */
+  @media print {
+    body { background: white !important; color: black !important; }
+    header, .panel:first-child, .cards-header .btn-group, .card-delete, .pagination, .toast-container { display: none !important; }
+    .panel { box-shadow: none; border: none; padding: 0; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .bingo-card { break-inside: avoid; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    header { padding: 14px 16px; }
+    .logo-text { font-size: 20px; }
+    .controls-grid { grid-template-columns: 1fr 1fr; }
+    .cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .card-cell { font-size: 14px; min-height: 32px; }
+    .bingo-letter { font-size: 16px; padding: 8px 2px; }
+    main { padding: 16px 10px; }
+  }
+
+  @media (max-width: 400px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1><i class="fas fa-dice"></i> BINGO CASINO ELITE 90 <i class="fas fa-dice"></i></h1>
-            <p class="subtitle">Sistema profissional premium com roleta moderna de 5 segundos, cartelas 1-90 números e efeitos cinematográficos</p>
-        </header>
 
-        <!-- Conteúdo Principal -->
-        <div class="main-content">
-            <!-- Seção da Roleta Moderna -->
-            <div class="roulette-section">
-                <h2 class="section-title">ROULETTE MODERNA</h2>
-                
-                <div class="roulette-container">
-                    <div class="roulette-ring"></div>
-                    <div class="roulette-pointer"></div>
-                    <div class="roulette-wheel" id="rouletteWheel">
-                        <div class="roulette-wheel-inner">
-                            <div class="roulette-numbers" id="rouletteNumbers">
-                                <!-- Números da roleta serão gerados aqui -->
-                            </div>
-                            <div class="roulette-center">
-                                <div class="current-number" id="currentNumber">--</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="spin-timer" id="spinTimer">
-                        <i class="fas fa-clock" style="color: var(--gold);"></i>
-                        <span>TEMPO:</span>
-                        <div class="timer-value" id="timerValue">5s</div>
-                    </div>
-                </div>
-                
-                <div class="roulette-controls">
-                    <button class="btn btn-casino" id="spinBtn">
-                        <i class="fas fa-play-circle"></i> GIRAR (5s)
-                    </button>
-                    <button class="btn btn-gold" id="autoSpinBtn">
-                        <i class="fas fa-redo-alt"></i> AUTO SPIN
-                    </button>
-                    <button class="btn btn-green" id="continueAfterBingoBtn">
-                        <i class="fas fa-play"></i> CONTINUAR
-                    </button>
-                    <button class="btn btn-purple" id="resetBtn">
-                        <i class="fas fa-sync-alt"></i> REINICIAR
-                    </button>
-                </div>
-                
-                <!-- Controle de Áudio Moderno -->
-                <div class="audio-controls" style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 20px; border: 2px solid rgba(212, 175, 55, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-                        <div class="volume-control" style="flex: 1; display: flex; align-items: center; gap: 15px;">
-                            <i class="fas fa-volume-up fa-lg" style="color: var(--gold);"></i>
-                            <input type="range" min="0" max="100" value="70" class="volume-slider" id="volumeSlider" style="flex: 1;">
-                            <span id="volumeValue" style="min-width: 50px; text-align: center; font-weight: bold; color: var(--gold);">70%</span>
-                        </div>
-                        <div style="display: flex; gap: 15px;">
-                            <button class="btn btn-sm btn-gold" id="toggleMusicBtn">
-                                <i class="fas fa-music"></i> MÚSICA
-                            </button>
-                            <button class="btn btn-sm btn-blue" id="toggleSoundsBtn">
-                                <i class="fas fa-volume-up"></i> SONS
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Barra de Progresso -->
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                </div>
-                
-                <!-- Estatísticas Modernas -->
-                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
-                    <div class="stat-card" style="text-align: center; padding: 25px; background: linear-gradient(135deg, rgba(42,74,42,0.9), rgba(26,58,26,0.9)); border-radius: 20px; border: 2px solid rgba(212,175,55,0.3);">
-                        <div class="stat-value" id="ballsDrawn" style="font-size: 3.5rem; font-weight: 900; color: var(--gold-light); margin-bottom: 10px;">0</div>
-                        <div class="stat-label" style="font-size: 1.1rem; color: #ccc; text-transform: uppercase; letter-spacing: 1px;">Sorteados</div>
-                    </div>
-                    <div class="stat-card" style="text-align: center; padding: 25px; background: linear-gradient(135deg, rgba(42,74,42,0.9), rgba(26,58,26,0.9)); border-radius: 20px; border: 2px solid rgba(212,175,55,0.3);">
-                        <div class="stat-value" id="remainingBalls" style="font-size: 3.5rem; font-weight: 900; color: var(--gold-light); margin-bottom: 10px;">90</div>
-                        <div class="stat-label" style="font-size: 1.1rem; color: #ccc; text-transform: uppercase; letter-spacing: 1px;">Restantes</div>
-                    </div>
-                    <div class="stat-card" style="text-align: center; padding: 25px; background: linear-gradient(135deg, rgba(42,74,42,0.9), rgba(26,58,26,0.9)); border-radius: 20px; border: 2px solid rgba(212,175,55,0.3);">
-                        <div class="stat-value" id="cardsCount" style="font-size: 3.5rem; font-weight: 900; color: var(--gold-light); margin-bottom: 10px;">0</div>
-                        <div class="stat-label" style="font-size: 1.1rem; color: #ccc; text-transform: uppercase; letter-spacing: 1px;">Cartelas</div>
-                    </div>
-                    <div class="stat-card" style="text-align: center; padding: 25px; background: linear-gradient(135deg, rgba(42,74,42,0.9), rgba(26,58,26,0.9)); border-radius: 20px; border: 2px solid rgba(212,175,55,0.3);">
-                        <div class="stat-value" id="winnersCount" style="font-size: 3.5rem; font-weight: 900; color: var(--gold-light); margin-bottom: 10px;">0</div>
-                        <div class="stat-label" style="font-size: 1.1rem; color: #ccc; text-transform: uppercase; letter-spacing: 1px;">Vencedores</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Painel de Números -->
-            <div class="numbers-panel">
-                <div class="numbers-header">
-                    <h2 class="section-title">NÚMEROS SORTEADOS</h2>
-                    <div class="numbers-stats">
-                        <div class="stat-badge">
-                            <i class="fas fa-history"></i>
-                            <span>ÚLTIMOS: </span>
-                            <strong id="lastNumbers">--</strong>
-                        </div>
-                        <div class="stat-badge">
-                            <i class="fas fa-chart-line"></i>
-                            <span>TAXA: </span>
-                            <strong id="drawRate">0%</strong>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="numbers-grid" id="numbersGrid">
-                    <!-- Bolas serão geradas aqui -->
-                </div>
-            </div>
-        </div>
-        
-        <!-- Seção de Cartelas (mantido similar) -->
-        <div class="cards-section">
-            <div class="cards-header">
-                <h2 class="section-title">CARTELAS DE BINGO</h2>
-                
-                <div class="cards-controls">
-                    <div class="cards-generator" style="display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 20px; border: 2px solid rgba(212,175,55,0.3);">
-                        <div class="quantity-control" style="display: flex; align-items: center; gap: 15px;">
-                            <button class="btn btn-sm btn-casino" id="decreaseCards" style="width: 45px; height: 45px; border-radius: 50%;">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <input type="number" min="1" max="999" value="30" class="input-field" id="cardsQuantity" style="width: 100px; text-align: center; font-weight: bold;">
-                            <button class="btn btn-sm btn-green" id="increaseCards" style="width: 45px; height: 45px; border-radius: 50%;">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        <button class="btn btn-gold" id="generateCardsBtn">
-                            <i class="fas fa-magic"></i> GERAR CARTELAS
-                        </button>
-                    </div>
-                    
-                    <div style="display: flex; gap: 20px;">
-                        <button class="btn btn-casino" id="clearCardsBtn">
-                            <i class="fas fa-trash-alt"></i> LIMPAR
-                        </button>
-                        <button class="btn btn-green" id="exportBtn">
-                            <i class="fas fa-download"></i> EXPORTAR
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="cards-container" id="cardsContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; max-height: 700px; overflow-y: auto; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 20px; border: 2px solid rgba(212,175,55,0.3);">
-                <!-- Cartelas serão geradas aqui -->
-                <div style="grid-column: 1 / -1; text-align: center; padding: 60px;">
-                    <i class="fas fa-ticket-alt fa-4x" style="color: var(--gold); margin-bottom: 25px; opacity: 0.5;"></i>
-                    <h3 style="color: var(--gold-light); margin-bottom: 15px;">Nenhuma cartela gerada</h3>
-                    <p style="color: #aaa;">Defina a quantidade e clique em "GERAR CARTELAS" para iniciar</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <footer style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(212,175,55,0.3); color: #aaa; font-size: 0.95rem; background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px;">
-            <p>Bingo Casino Elite System v5.0 | Roleta Moderna 5s | Cartelas 1-90 números | Efeitos Sonoros Premium | © 2024</p>
-        </footer>
+<header>
+  <div class="logo-ball">B</div>
+  <div>
+    <div class="logo-text">BINGO CARTELAS</div>
+    <div class="logo-sub">Gerador profissional</div>
+  </div>
+  <div class="header-right">
+    <div class="badge">Total: <span id="totalBadge">0</span></div>
+    <button class="btn btn-outline" onclick="showDeleteAllModal()">🗑 Limpar tudo</button>
+  </div>
+</header>
+
+<main>
+  <!-- PAINEL DE GERAÇÃO -->
+  <div class="panel">
+    <div class="panel-title">🎲 Gerar Novas Cartelas</div>
+    <div class="controls-grid">
+      <div class="form-group">
+        <label>Quantidade</label>
+        <input type="number" id="qtdCartelas" value="6" min="1" max="500" placeholder="Ex: 6">
+      </div>
+      <div class="form-group">
+        <label>Número inicial</label>
+        <input type="number" id="numInicio" value="1" min="1" placeholder="Ex: 1">
+      </div>
+      <div class="form-group">
+        <label>Tem casa livre?</label>
+        <select id="hasFreeSel">
+          <option value="yes">Sim (centro livre)</option>
+          <option value="no">Não</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-top:18px;" class="btn-group">
+      <button class="btn btn-primary" onclick="generateCards()">✨ Gerar Cartelas</button>
+      <button class="btn btn-success" onclick="downloadPDF()">📄 Baixar PDF</button>
+      <button class="btn btn-outline" onclick="showSearchModal()">🔍 Buscar cartela</button>
+      <button class="btn" style="background:linear-gradient(135deg,#6366f1,#4338ca);color:white;box-shadow:0 4px 16px rgba(99,102,241,0.35);" onclick="showGlobeModal()">🎱 Sortear</button>
+    </div>
+    <div class="loading-bar" id="loadingBar"><div class="loading-bar-inner"></div></div>
+  </div>
+
+  <!-- CARTELAS -->
+  <div class="panel">
+    <div class="cards-header">
+      <div class="panel-title" style="margin-bottom:0;">🃏 Cartelas Geradas</div>
+      <div class="btn-group">
+        <select class="btn btn-outline" id="perPageSel" onchange="render()" style="padding:10px 14px;">
+          <option value="12">12 por página</option>
+          <option value="24">24 por página</option>
+          <option value="48">48 por página</option>
+          <option value="all">Todas</option>
+        </select>
+      </div>
     </div>
 
-    <!-- Mensagem de Bingo Moderna -->
-    <div class="bingo-message-container" id="bingoMessage" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 3000; backdrop-filter: blur(10px);">
-        <div class="bingo-message" style="background: linear-gradient(135deg, var(--gold), var(--gold-light)); padding: 80px; border-radius: 40px; text-align: center; animation: messageAppear 0.8s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 200px rgba(212,175,55,0.6); position: relative; overflow: hidden; max-width: 800px;">
-            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent); animation: shine 4s infinite linear;"></div>
-            <h2 style="font-size: 6rem; color: #000; margin-bottom: 30px; text-shadow: 4px 4px 0 rgba(255,255,255,0.3); letter-spacing: 10px; font-weight: 900; position: relative; z-index: 2;">🎉 BINGO! 🎉</h2>
-            <p id="bingoWinnerName" style="font-size: 3rem; color: #000; margin-bottom: 40px; font-weight: 800; position: relative; z-index: 2;">Cartela Vencedora!</p>
-            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center; position: relative; z-index: 2;">
-                <button class="btn btn-casino" id="closeBingoBtn" style="padding: 20px 40px; font-size: 1.3rem;">
-                    <i class="fas fa-times"></i> FECHAR
-                </button>
-                <button class="btn btn-gold" id="continueGameBtn" style="padding: 20px 40px; font-size: 1.3rem;">
-                    <i class="fas fa-play"></i> CONTINUAR
-                </button>
-            </div>
-        </div>
+    <div id="cardsContainer">
+      <div class="empty-state">
+        <div class="icon">🎱</div>
+        <h3>Nenhuma cartela ainda</h3>
+        <p>Clique em "Gerar Cartelas" para começar!</p>
+      </div>
     </div>
 
-    <!-- Modal Moderno -->
-    <div class="modal-overlay" id="cardModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(10px);">
-        <div class="modal-content" style="background: linear-gradient(135deg, #1a3a1a, #0d1f0d); border-radius: 30px; padding: 50px; width: 90%; max-width: 900px; max-height: 85vh; overflow-y: auto; border: 3px solid var(--gold); box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 150px rgba(212,175,55,0.3); animation: modalAppear 0.6s;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-                <h2 id="modalTitle" style="color: var(--gold-light); font-size: 2.2rem;">DETALHES DA CARTELA</h2>
-                <button class="btn btn-casino" id="closeModal" style="width: 50px; height: 50px; border-radius: 50%; padding: 0;">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="modalCardContent">
-                <!-- Conteúdo detalhado da cartela -->
-            </div>
-        </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</main>
+
+<!-- MODAL CONFIRMAR EXCLUIR TUDO -->
+<div class="modal-overlay" id="deleteAllModal">
+  <div class="modal">
+    <h2>⚠️ Confirmar exclusão</h2>
+    <p style="color:var(--text-muted);margin-bottom:20px;">Todas as <strong id="delCount">0</strong> cartelas serão excluídas permanentemente. Essa ação não pode ser desfeita.</p>
+    <div class="btn-group">
+      <button class="btn btn-danger" onclick="deleteAll()">🗑 Excluir tudo</button>
+      <button class="btn btn-outline" onclick="closeModal('deleteAllModal')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL BUSCAR -->
+<div class="modal-overlay" id="searchModal">
+  <div class="modal">
+    <h2>🔍 Buscar Cartela</h2>
+    <div class="form-group" style="margin-bottom:16px;">
+      <label>Número da cartela</label>
+      <input type="number" id="searchInput" placeholder="Ex: 42" style="background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;width:100%;">
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="searchCard()">Buscar</button>
+      <button class="btn btn-outline" onclick="closeModal('searchModal')">Cancelar</button>
+    </div>
+    <div id="searchResult" style="margin-top:16px;"></div>
+  </div>
+</div>
+
+<!-- MODAL GLOBO DE SORTEIO -->
+<div class="modal-overlay globe-modal" id="globeModal">
+  <div class="modal">
+    <h2>🎱 Globo de Sorteio</h2>
+
+    <!-- Globo SVG animado -->
+    <div class="globe-wrap" id="globeWrap">
+      <svg class="globe-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="globeGrad" cx="38%" cy="32%" r="65%">
+            <stop offset="0%" stop-color="#475569"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </radialGradient>
+          <radialGradient id="globeShine" cx="38%" cy="28%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+          <clipPath id="globeClip">
+            <circle cx="110" cy="110" r="90"/>
+          </clipPath>
+        </defs>
+        <!-- Estrutura do globo -->
+        <circle cx="110" cy="110" r="90" fill="url(#globeGrad)" stroke="#334155" stroke-width="3"/>
+        <!-- Grade giratória -->
+        <g class="globe-inner-group" clip-path="url(#globeClip)">
+          <!-- linhas verticais -->
+          <line x1="50"  y1="20"  x2="50"  y2="200" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="80"  y1="20"  x2="80"  y2="200" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="110" y1="20"  x2="110" y2="200" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="140" y1="20"  x2="140" y2="200" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="170" y1="20"  x2="170" y2="200" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <!-- linhas horizontais -->
+          <line x1="20"  y1="50"  x2="200" y2="50"  stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="20"  y1="80"  x2="200" y2="80"  stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="20"  y1="110" x2="200" y2="110" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="20"  y1="140" x2="200" y2="140" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <line x1="20"  y1="170" x2="200" y2="170" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+          <!-- bolinhas saltando -->
+          <circle id="gb1" cx="70"  cy="90"  r="8" fill="radial-gradient(circle,#f43f5e,#9f1239)" opacity="0.9"/>
+          <circle id="gb2" cx="130" cy="130" r="8" fill="#f59e0b" opacity="0.9"/>
+          <circle id="gb3" cx="90"  cy="150" r="7" fill="#10b981" opacity="0.9"/>
+          <circle id="gb4" cx="150" cy="75"  r="7" fill="#3b82f6" opacity="0.9"/>
+          <circle id="gb5" cx="60"  cy="140" r="6" fill="#a78bfa" opacity="0.9"/>
+          <circle id="gb6" cx="145" cy="155" r="6" fill="#f43f5e" opacity="0.9"/>
+          <circle id="gb7" cx="75"  cy="65"  r="7" fill="#f59e0b" opacity="0.9"/>
+        </g>
+        <!-- Brilho -->
+        <circle cx="110" cy="110" r="90" fill="url(#globeShine)"/>
+        <!-- Aro externo -->
+        <circle cx="110" cy="110" r="90" fill="none" stroke="rgba(245,158,11,0.5)" stroke-width="2.5"/>
+        <!-- Pé do globo -->
+        <rect x="90" y="198" width="40" height="6" rx="3" fill="#334155"/>
+        <rect x="80" y="204" width="60" height="5" rx="2.5" fill="#1e293b"/>
+      </svg>
+      <!-- número atual no centro -->
+      <div class="globe-ball-display" id="globeBallDisplay" style="display:none;">
+        <div class="globe-current-letter" id="globeCurrentLetter"></div>
+        <div class="globe-current-num" id="globeCurrentNum"></div>
+      </div>
     </div>
 
-    <!-- Elementos de Áudio -->
-    <audio id="rouletteSound" preload="auto" loop>
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-casino-roulette-spin-1031.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="bgMusic" preload="auto" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="bingoSound" preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="applauseSound" preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-crowd-applause-477.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="yesSound" preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-arcade-tone-1997.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="ballSound" preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-plastic-bubble-click-1124.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="countdownSound" preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">
-    </audio>
+    <div class="last-ball-announce" id="lastBallAnnounce">Pronto para sortear!</div>
+    <div class="globe-stats">Sorteados: <span id="globeDrawnCount">0</span> / <span id="globeTotalCount">75</span> &nbsp;|&nbsp; Restantes: <span id="globeRemainingCount">75</span></div>
 
-    <script>
-        class BingoCasinoEliteSystem {
-            constructor() {
-                this.drawnNumbers = [];
-                this.availableNumbers = Array.from({length: 90}, (_, i) => i + 1);
-                this.cards = [];
-                this.winners = [];
-                this.isAutoSpinning = false;
-                this.isPaused = false;
-                this.gameState = 'active';
-                this.autoSpinInterval = null;
-                this.spinDuration = 5000; // 5 segundos
-                this.audioEnabled = true;
-                this.musicEnabled = true;
-                this.volume = 0.7;
-                this.bingoActive = false;
-                this.isSpinning = false;
-                this.timerInterval = null;
-                this.currentTimer = 5;
-                
-                // Elementos de áudio
-                this.sounds = {
-                    roulette: document.getElementById('rouletteSound'),
-                    music: document.getElementById('bgMusic'),
-                    bingo: document.getElementById('bingoSound'),
-                    applause: document.getElementById('applauseSound'),
-                    yes: document.getElementById('yesSound'),
-                    ball: document.getElementById('ballSound'),
-                    countdown: document.getElementById('countdownSound')
-                };
-                
-                this.init();
-            }
-            
-            init() {
-                this.loadFromStorage();
-                this.setupRoulette();
-                this.renderNumbersGrid();
-                this.updateUI();
-                this.updateProgressBar();
-                this.setupEventListeners();
-                this.setupAudioControls();
-                
-                if (this.cards.length > 0) {
-                    this.renderCards();
-                }
-                
-                setTimeout(() => {
-                    if (this.musicEnabled) {
-                        this.sounds.music.volume = this.volume * 0.5;
-                        this.sounds.music.play().catch(e => console.log('Áudio não pode ser reproduzido automaticamente'));
-                    }
-                }, 1000);
-                
-                this.updateTimerDisplay();
-            }
-            
-            updateTimerDisplay() {
-                document.getElementById('timerValue').textContent = `${this.currentTimer}s`;
-            }
-            
-            startSpinTimer() {
-                this.currentTimer = 5;
-                this.updateTimerDisplay();
-                
-                this.timerInterval = setInterval(() => {
-                    this.currentTimer--;
-                    this.updateTimerDisplay();
-                    
-                    if (this.currentTimer <= 0) {
-                        clearInterval(this.timerInterval);
-                    }
-                }, 1000);
-            }
-            
-            stopSpinTimer() {
-                if (this.timerInterval) {
-                    clearInterval(this.timerInterval);
-                    this.timerInterval = null;
-                }
-            }
-            
-            loadFromStorage() {
-                try {
-                    const saved = localStorage.getItem('bingo_casino_elite_90');
-                    if (saved) {
-                        const data = JSON.parse(saved);
-                        this.drawnNumbers = data.drawnNumbers || [];
-                        this.availableNumbers = data.availableNumbers || Array.from({length: 90}, (_, i) => i + 1);
-                        this.cards = data.cards || [];
-                        this.winners = data.winners || [];
-                        this.gameState = data.gameState || 'active';
-                        this.volume = data.volume || 0.7;
-                        this.musicEnabled = data.musicEnabled !== false;
-                        this.audioEnabled = data.audioEnabled !== false;
-                    }
-                } catch (e) {
-                    console.error('Erro ao carregar estado:', e);
-                }
-            }
-            
-            saveToStorage() {
-                const data = {
-                    drawnNumbers: this.drawnNumbers,
-                    availableNumbers: this.availableNumbers,
-                    cards: this.cards,
-                    winners: this.winners,
-                    gameState: this.gameState,
-                    volume: this.volume,
-                    musicEnabled: this.musicEnabled,
-                    audioEnabled: this.audioEnabled,
-                    lastSave: new Date().toISOString()
-                };
-                localStorage.setItem('bingo_casino_elite_90', JSON.stringify(data));
-            }
-            
-            setupAudioControls() {
-                const volumeSlider = document.getElementById('volumeSlider');
-                const volumeValue = document.getElementById('volumeValue');
-                const toggleMusicBtn = document.getElementById('toggleMusicBtn');
-                const toggleSoundsBtn = document.getElementById('toggleSoundsBtn');
-                
-                volumeSlider.value = this.volume * 100;
-                volumeValue.textContent = `${Math.round(this.volume * 100)}%`;
-                this.updateVolume();
-                
-                toggleMusicBtn.innerHTML = this.musicEnabled ? 
-                    '<i class="fas fa-music"></i> MÚSICA' : 
-                    '<i class="fas fa-volume-mute"></i> MÚSICA';
-                
-                toggleSoundsBtn.innerHTML = this.audioEnabled ? 
-                    '<i class="fas fa-volume-up"></i> SONS' : 
-                    '<i class="fas fa-volume-mute"></i> SONS';
-                
-                volumeSlider.addEventListener('input', () => {
-                    this.volume = volumeSlider.value / 100;
-                    volumeValue.textContent = `${volumeSlider.value}%`;
-                    this.updateVolume();
-                    this.saveToStorage();
-                });
-                
-                toggleMusicBtn.addEventListener('click', () => {
-                    this.musicEnabled = !this.musicEnabled;
-                    toggleMusicBtn.innerHTML = this.musicEnabled ? 
-                        '<i class="fas fa-music"></i> MÚSICA' : 
-                        '<i class="fas fa-volume-mute"></i> MÚSICA';
-                    
-                    if (this.musicEnabled && !this.isPaused) {
-                        this.sounds.music.play().catch(e => console.log('Música não pode ser reproduzida'));
-                    } else {
-                        this.sounds.music.pause();
-                    }
-                    
-                    this.saveToStorage();
-                    this.showNotification(this.musicEnabled ? 'Música ativada' : 'Música desativada');
-                });
-                
-                toggleSoundsBtn.addEventListener('click', () => {
-                    this.audioEnabled = !this.audioEnabled;
-                    toggleSoundsBtn.innerHTML = this.audioEnabled ? 
-                        '<i class="fas fa-volume-up"></i> SONS' : 
-                        '<i class="fas fa-volume-mute"></i> SONS';
-                    
-                    this.saveToStorage();
-                    this.showNotification(this.audioEnabled ? 'Sons ativados' : 'Sons desativados');
-                });
-            }
-            
-            updateVolume() {
-                Object.values(this.sounds).forEach(sound => {
-                    if (sound) {
-                        sound.volume = this.volume;
-                    }
-                });
-                
-                if (this.sounds.music) {
-                    this.sounds.music.volume = this.volume * 0.5;
-                }
-            }
-            
-            playSound(soundName) {
-                if (!this.audioEnabled) return;
-                
-                const sound = this.sounds[soundName];
-                if (sound) {
-                    sound.currentTime = 0;
-                    sound.volume = this.volume;
-                    
-                    if (soundName === 'music') {
-                        sound.volume = this.volume * 0.5;
-                    } else if (soundName === 'applause') {
-                        sound.volume = this.volume * 0.8;
-                    }
-                    
-                    sound.play().catch(e => console.log(`Som ${soundName} não pode ser reproduzido:`, e));
-                }
-            }
-            
-            setupRoulette() {
-                const rouletteNumbers = document.getElementById('rouletteNumbers');
-                rouletteNumbers.innerHTML = '';
-                
-                for (let i = 1; i <= 90; i++) {
-                    const angle = (i / 90) * 360;
-                    const rad = (angle * Math.PI) / 180;
-                    const radius = 180;
-                    const x = Math.cos(rad) * radius;
-                    const y = Math.sin(rad) * radius;
-                    
-                    const number = document.createElement('div');
-                    number.className = 'roulette-number';
-                    number.textContent = i;
-                    number.style.left = `calc(50% + ${x}px)`;
-                    number.style.top = `calc(50% + ${y}px)`;
-                    number.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-                    
-                    if (i % 3 === 0) {
-                        number.classList.add('blue');
-                    } else if (i % 3 === 1) {
-                        number.classList.add('green');
-                    } else if (i % 3 === 2) {
-                        number.classList.add('red');
-                    }
-                    
-                    rouletteNumbers.appendChild(number);
-                }
-            }
-            
-            setupEventListeners() {
-                document.getElementById('spinBtn').addEventListener('click', () => this.spinRoulette());
-                document.getElementById('autoSpinBtn').addEventListener('click', () => this.toggleAutoSpin());
-                document.getElementById('continueAfterBingoBtn').addEventListener('click', () => this.continueAfterBingo());
-                document.getElementById('resetBtn').addEventListener('click', () => this.resetGame());
-                document.getElementById('closeBingoBtn').addEventListener('click', () => this.hideBingoMessage());
-                document.getElementById('continueGameBtn').addEventListener('click', () => this.continueAfterBingo());
-                
-                document.getElementById('generateCardsBtn').addEventListener('click', () => this.generateCards());
-                document.getElementById('clearCardsBtn').addEventListener('click', () => this.clearAllCards());
-                document.getElementById('exportBtn').addEventListener('click', () => this.exportData());
-                document.getElementById('closeModal').addEventListener('click', () => this.hideModal());
-                
-                document.getElementById('increaseCards').addEventListener('click', () => {
-                    const input = document.getElementById('cardsQuantity');
-                    let value = parseInt(input.value) || 30;
-                    if (value < 999) input.value = value + 1;
-                });
-                
-                document.getElementById('decreaseCards').addEventListener('click', () => {
-                    const input = document.getElementById('cardsQuantity');
-                    let value = parseInt(input.value) || 30;
-                    if (value > 1) input.value = value - 1;
-                });
-                
-                document.getElementById('cardsQuantity').addEventListener('change', function() {
-                    let value = parseInt(this.value) || 30;
-                    if (value < 1) value = 1;
-                    if (value > 999) value = 999;
-                    this.value = value;
-                });
-                
-                document.addEventListener('keydown', (e) => {
-                    if (e.code === 'Space' && !this.isAutoSpinning && !this.isPaused && !this.bingoActive && !this.isSpinning) {
-                        e.preventDefault();
-                        this.spinRoulette();
-                    }
-                    if (e.code === 'KeyA' && e.ctrlKey && !this.bingoActive) {
-                        e.preventDefault();
-                        this.toggleAutoSpin();
-                    }
-                    if (e.code === 'KeyR' && e.ctrlKey) {
-                        e.preventDefault();
-                        this.resetGame();
-                    }
-                    if (e.code === 'KeyC' && e.ctrlKey && this.bingoActive) {
-                        e.preventDefault();
-                        this.continueAfterBingo();
-                    }
-                });
-                
-                document.getElementById('cardModal').addEventListener('click', (e) => {
-                    if (e.target === document.getElementById('cardModal')) {
-                        this.hideModal();
-                    }
-                });
-            }
-            
-            spinRoulette() {
-                if (this.isSpinning || this.isPaused || this.availableNumbers.length === 0 || this.gameState === 'finished' || this.bingoActive) {
-                    return;
-                }
-                
-                this.isSpinning = true;
-                const spinBtn = document.getElementById('spinBtn');
-                spinBtn.disabled = true;
-                spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GIRANDO...';
-                
-                const roulette = document.getElementById('rouletteWheel');
-                const spinDegrees = 360 * 8 + Math.random() * 360;
-                
-                this.startSpinTimer();
-                this.playSound('roulette');
-                
-                roulette.style.transition = `transform ${this.spinDuration}ms cubic-bezier(0.1, 0.7, 0.1, 1)`;
-                roulette.style.transform = `rotate(${spinDegrees}deg)`;
-                
-                setTimeout(() => {
-                    this.stopSound('roulette');
-                }, this.spinDuration - 500);
-                
-                setTimeout(() => {
-                    if (this.availableNumbers.length === 0) {
-                        this.isSpinning = false;
-                        spinBtn.disabled = false;
-                        spinBtn.innerHTML = '<i class="fas fa-play-circle"></i> GIRAR (5s)';
-                        this.stopSpinTimer();
-                        return;
-                    }
-                    
-                    const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
-                    const drawnNumber = this.availableNumbers[randomIndex];
-                    
-                    this.drawNumber(drawnNumber);
-                    this.isSpinning = false;
-                    spinBtn.disabled = false;
-                    spinBtn.innerHTML = '<i class="fas fa-play-circle"></i> GIRAR (5s)';
-                    this.stopSpinTimer();
-                    this.currentTimer = 5;
-                    this.updateTimerDisplay();
-                    
-                }, this.spinDuration - 500);
-            }
-            
-            drawNumber(number) {
-                this.availableNumbers = this.availableNumbers.filter(n => n !== number);
-                this.drawnNumbers.push(number);
-                
-                this.updateCurrentNumber(number);
-                this.updateNumberBall(number);
-                this.updateLastNumbers();
-                this.checkAllBingos();
-                this.updateUI();
-                this.updateProgressBar();
-                this.saveToStorage();
-                
-                this.updateCardsMarking();
-                
-                this.playSound('ball');
-                this.createParticles();
-            }
-            
-            createParticles() {
-                const container = document.querySelector('.roulette-container');
-                const particles = document.createElement('div');
-                particles.className = 'particles';
-                
-                for (let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = `${Math.random() * 100}%`;
-                    particle.style.top = `${Math.random() * 100}%`;
-                    particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}px`);
-                    particle.style.setProperty('--ty', `${(Math.random() - 0.5) * 200}px`);
-                    particles.appendChild(particle);
-                }
-                
-                container.appendChild(particles);
-                
-                setTimeout(() => {
-                    particles.remove();
-                }, 1000);
-            }
-            
-            updateCurrentNumber(number) {
-                const currentNumber = document.getElementById('currentNumber');
-                currentNumber.textContent = number;
-                
-                currentNumber.style.animation = 'none';
-                setTimeout(() => {
-                    currentNumber.style.animation = 'numberGlow 2s infinite alternate';
-                }, 10);
-            }
-            
-            renderNumbersGrid() {
-                const grid = document.getElementById('numbersGrid');
-                grid.innerHTML = '';
-                
-                for (let i = 1; i <= 90; i++) {
-                    const ball = document.createElement('div');
-                    ball.className = 'number-ball';
-                    ball.id = `ball-${i}`;
-                    
-                    let letter;
-                    if (i <= 18) letter = 'B';
-                    else if (i <= 36) letter = 'I';
-                    else if (i <= 54) letter = 'N';
-                    else if (i <= 72) letter = 'G';
-                    else letter = 'O';
-                    
-                    ball.innerHTML = `
-                        <span class="ball-letter">${letter}</span>
-                        <span>${i}</span>
-                    `;
-                    
-                    if (this.drawnNumbers.includes(i)) {
-                        ball.classList.add('called');
-                    }
-                    
-                    grid.appendChild(ball);
-                }
-            }
-            
-            updateNumberBall(number) {
-                const ball = document.getElementById(`ball-${number}`);
-                if (ball) {
-                    ball.classList.add('called');
-                    
-                    ball.style.animation = 'none';
-                    setTimeout(() => {
-                        ball.style.animation = 'ballGlow 2s infinite alternate';
-                    }, 10);
-                }
-            }
-            
-            updateLastNumbers() {
-                const lastNumbers = this.drawnNumbers.slice(-5).reverse();
-                document.getElementById('lastNumbers').textContent = lastNumbers.join(', ');
-                
-                const drawRate = ((this.drawnNumbers.length / 90) * 100).toFixed(1);
-                document.getElementById('drawRate').textContent = `${drawRate}%`;
-            }
-            
-            generateBingoCard(cardNumber) {
-                const card = {
-                    numbers: [],
-                    id: cardNumber,
-                    name: `Cartela ${cardNumber}`,
-                    hasBingo: false,
-                    markedCount: 0
-                };
-                
-                const allNumbers = Array.from({length: 90}, (_, i) => i + 1);
-                const shuffled = [...allNumbers].sort(() => Math.random() - 0.5);
-                const selectedNumbers = shuffled.slice(0, 25).sort((a, b) => a - b);
-                
-                for (let row = 0; row < 5; row++) {
-                    const rowNumbers = selectedNumbers.slice(row * 5, (row + 1) * 5);
-                    card.numbers.push(rowNumbers);
-                }
-                
-                return card;
-            }
-            
-            generateCards() {
-                const quantityInput = document.getElementById('cardsQuantity');
-                const quantity = parseInt(quantityInput.value) || 30;
-                
-                if (quantity < 1 || quantity > 999) {
-                    this.showNotification('Quantidade inválida! Use entre 1 e 999 cartelas.');
-                    return;
-                }
-                
-                if (this.cards.length > 0) {
-                    if (!confirm(`Isso substituirá todas as ${this.cards.length} cartelas atuais por ${quantity} novas. Continuar?`)) {
-                        return;
-                    }
-                }
-                
-                this.cards = [];
-                this.winners = [];
-                this.bingoActive = false;
-                
-                for (let i = 1; i <= quantity; i++) {
-                    const card = this.generateBingoCard(i);
-                    this.cards.push(card);
-                }
-                
-                this.renderCards();
-                this.updateUI();
-                this.saveToStorage();
-                
-                this.showNotification(`${quantity} cartelas geradas com sucesso!`);
-            }
-            
-            renderCards() {
-                const container = document.getElementById('cardsContainer');
-                
-                if (this.cards.length === 0) {
-                    container.innerHTML = `
-                        <div style="grid-column: 1 / -1; text-align: center; padding: 60px;">
-                            <i class="fas fa-ticket-alt fa-4x" style="color: var(--gold); margin-bottom: 25px; opacity: 0.5;"></i>
-                            <h3 style="color: var(--gold-light); margin-bottom: 15px;">Nenhuma cartela gerada</h3>
-                            <p style="color: #aaa;">Defina a quantidade e clique em "GERAR CARTELAS" para iniciar</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                container.innerHTML = this.cards.map(card => `
-                    <div class="bingo-card ${card.hasBingo ? 'winner' : ''}" 
-                         data-id="${card.id}"
-                         style="background: linear-gradient(135deg, rgba(30,45,30,0.95), rgba(15,25,15,0.95)); border-radius: 20px; padding: 25px; border: 2px solid ${card.hasBingo ? 'var(--gold-light)' : 'rgba(139,115,85,0.5)'}; transition: all 0.4s; position: relative; overflow: hidden;">
-                        ${card.hasBingo ? '<div style="position: absolute; top: 0; right: 0; background: var(--gold); color: #000; padding: 8px 20px; border-radius: 0 0 0 20px; font-weight: bold; z-index: 2;"><i class="fas fa-crown"></i> VENCEDOR</div>' : ''}
-                        
-                        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid rgba(212,175,55,0.3);">
-                            <div class="card-info" style="display: flex; align-items: center; gap: 15px;">
-                                <div class="card-number" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--casino-blue)); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.6rem; color: white; box-shadow: 0 8px 20px rgba(33,150,243,0.4);">
-                                    ${card.id}
-                                </div>
-                                <div class="card-details" style="flex: 1;">
-                                    <div class="card-title" style="font-size: 1.5rem; font-weight: 700; color: var(--gold-light); margin-bottom: 8px;">
-                                        ${card.name}
-                                        ${card.hasBingo ? ' 🏆' : ''}
-                                    </div>
-                                    <div>
-                                        <span class="card-id" style="font-size: 0.95rem; color: #aaa; background: rgba(0,0,0,0.4); padding: 5px 15px; border-radius: 15px; display: inline-block;">
-                                            ID: ${card.id.toString().padStart(3, '0')}
-                                        </span>
-                                        <span class="card-id" style="margin-left: 10px; font-size: 0.95rem; color: #aaa; background: rgba(0,0,0,0.4); padding: 5px 15px; border-radius: 15px; display: inline-block;">
-                                            <i class="fas fa-check-circle"></i> ${card.markedCount}/25
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-actions" style="display: flex; gap: 12px;">
-                                <button class="btn btn-sm ${card.hasBingo ? 'btn-gold' : 'btn-blue'}" 
-                                        onclick="bingoSystemElite.showCardDetails(${card.id})"
-                                        style="padding: 10px 20px; font-size: 0.9rem;">
-                                    <i class="fas fa-eye"></i> VER
-                                </button>
-                                <button class="btn btn-sm btn-casino" 
-                                        onclick="bingoSystemElite.removeCard(${card.id})"
-                                        style="padding: 10px 20px; font-size: 0.9rem;">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="card-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px;">
-                            ${['1-18', '19-36', '37-54', '55-72', '73-90'].map(range => 
-                                `<div class="grid-header" style="height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: bold; color: var(--gold-light); background: rgba(0,0,0,0.4); border-radius: 8px; border: 2px solid rgba(212,175,55,0.3);">${range}</div>`
-                            ).join('')}
-                            
-                            ${(() => {
-                                let cells = '';
-                                for (let row = 0; row < 5; row++) {
-                                    for (let col = 0; col < 5; col++) {
-                                        const value = card.numbers[row][col];
-                                        const isMarked = this.drawnNumbers.includes(value);
-                                        const cellClass = `grid-cell ${isMarked ? 'marked' : ''}`;
-                                        cells += `<div class="${cellClass}" style="height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; background: ${isMarked ? 'linear-gradient(135deg, var(--red), #b71c1c)' : 'rgba(0,0,0,0.5)'}; border-radius: 8px; border: 2px solid ${isMarked ? '#ff5252' : 'rgba(139,115,85,0.3)'}; color: ${isMarked ? 'white' : '#ddd'}; transition: all 0.3s; position: relative; overflow: hidden;">
-                                            ${value}
-                                            ${isMarked ? '<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; color: white; text-shadow: 0 0 5px rgba(0,0,0,0.5); opacity: 0.8;">✓</div>' : ''}
-                                        </div>`;
-                                    }
-                                }
-                                return cells;
-                            })()}
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            updateCardsMarking() {
-                this.cards.forEach(card => {
-                    let markedCount = 0;
-                    for (let row = 0; row < 5; row++) {
-                        for (let col = 0; col < 5; col++) {
-                            const value = card.numbers[row][col];
-                            if (this.drawnNumbers.includes(value)) {
-                                markedCount++;
-                            }
-                        }
-                    }
-                    card.markedCount = markedCount;
-                });
-                
-                this.renderCards();
-            }
-            
-            checkAllBingos() {
-                let newBingo = false;
-                
-                this.cards.forEach(card => {
-                    if (!card.hasBingo && this.checkCardBingo(card)) {
-                        card.hasBingo = true;
-                        const winner = {
-                            cardId: card.id,
-                            cardName: card.name,
-                            time: new Date().toLocaleTimeString(),
-                            ballCount: this.drawnNumbers.length,
-                            numbers: this.drawnNumbers.slice(-10)
-                        };
-                        
-                        this.winners.push(winner);
-                        newBingo = true;
-                        
-                        this.playSound('bingo');
-                        setTimeout(() => this.playSound('applause'), 800);
-                        setTimeout(() => this.playSound('yes'), 1600);
-                        
-                        if (newBingo) {
-                            this.showBingoMessage(card);
-                            this.bingoActive = true;
-                        }
-                        
-                        if (this.winners.length === this.cards.length) {
-                            this.gameState = 'finished';
-                            this.showNotification('Todas as cartelas completaram BINGO!');
-                        }
-                    }
-                });
-                
-                this.updateUI();
-            }
-            
-            checkCardBingo(card) {
-                for (let row = 0; row < 5; row++) {
-                    let rowComplete = true;
-                    for (let col = 0; col < 5; col++) {
-                        if (!this.drawnNumbers.includes(card.numbers[row][col])) {
-                            rowComplete = false;
-                            break;
-                        }
-                    }
-                    if (rowComplete) return true;
-                }
-                
-                for (let col = 0; col < 5; col++) {
-                    let colComplete = true;
-                    for (let row = 0; row < 5; row++) {
-                        if (!this.drawnNumbers.includes(card.numbers[row][col])) {
-                            colComplete = false;
-                            break;
-                        }
-                    }
-                    if (colComplete) return true;
-                }
-                
-                let diag1 = true, diag2 = true;
-                for (let i = 0; i < 5; i++) {
-                    if (!this.drawnNumbers.includes(card.numbers[i][i])) diag1 = false;
-                    if (!this.drawnNumbers.includes(card.numbers[4-i][i])) diag2 = false;
-                }
-                
-                return diag1 || diag2;
-            }
-            
-            showBingoMessage(card) {
-                document.getElementById('bingoWinnerName').textContent = `${card.name} completou BINGO!`;
-                document.getElementById('bingoMessage').style.display = 'flex';
-                
-                if (this.isAutoSpinning) {
-                    this.toggleAutoSpin();
-                }
-            }
-            
-            hideBingoMessage() {
-                document.getElementById('bingoMessage').style.display = 'none';
-            }
-            
-            continueAfterBingo() {
-                this.bingoActive = false;
-                this.hideBingoMessage();
-                this.showNotification('Jogo continuando...');
-            }
-            
-            showCardDetails(cardId) {
-                const card = this.cards.find(c => c.id === cardId);
-                if (!card) return;
-                
-                document.getElementById('modalTitle').textContent = `Detalhes - ${card.name}`;
-                
-                let html = `
-                    <div style="margin-bottom: 30px; display: flex; gap: 25px; align-items: center; background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; border: 2px solid rgba(212,175,55,0.3);">
-                        <div class="card-number" style="width: 80px; height: 80px; font-size: 2.5rem; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--casino-blue)); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
-                            ${card.id}
-                        </div>
-                        <div style="flex: 1;">
-                            <h3 style="color: var(--gold-light); margin-bottom: 10px; font-size: 1.8rem;">${card.name}</h3>
-                            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                                <div style="background: ${card.hasBingo ? 'var(--gold)' : 'var(--blue)'}; color: ${card.hasBingo ? '#000' : 'white'}; padding: 8px 20px; border-radius: 15px; font-weight: bold;">
-                                    ${card.hasBingo ? '🏆 BINGO COMPLETO' : '⏳ EM ANDAMENTO'}
-                                </div>
-                                <div style="background: rgba(0,0,0,0.5); color: #ddd; padding: 8px 20px; border-radius: 15px;">
-                                    <i class="fas fa-check-circle"></i> ${card.markedCount}/25
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 30px;">
-                `;
-                
-                ['1-18', '19-36', '37-54', '55-72', '73-90'].forEach(range => {
-                    html += `<div class="grid-header" style="height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: var(--gold-light); background: rgba(0,0,0,0.4); border-radius: 10px; border: 2px solid rgba(212,175,55,0.3);">${range}</div>`;
-                });
-                
-                for (let row = 0; row < 5; row++) {
-                    for (let col = 0; col < 5; col++) {
-                        const value = card.numbers[row][col];
-                        const isMarked = this.drawnNumbers.includes(value);
-                        const cellClass = `grid-cell ${isMarked ? 'marked' : ''}`;
-                        html += `<div class="${cellClass}" style="height: 60px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: bold; background: ${isMarked ? 'linear-gradient(135deg, var(--red), #b71c1c)' : 'rgba(0,0,0,0.5)'}; border-radius: 10px; border: 2px solid ${isMarked ? '#ff5252' : 'rgba(139,115,85,0.3)'}; color: ${isMarked ? 'white' : '#ddd'}; position: relative;">
-                            ${value}
-                            ${isMarked ? '<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: white; opacity: 0.8;">✓</div>' : ''}
-                        </div>`;
-                    }
-                }
-                
-                html += `
-                    </div>
-                    
-                    <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; border: 2px solid rgba(212,175,55,0.3);">
-                        <h4 style="color: var(--gold-light); margin-bottom: 15px; font-size: 1.3rem;">📊 Estatísticas da Cartela</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px;">
-                                <div style="color: #aaa; font-size: 0.9rem;">ID da Cartela</div>
-                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--gold-light);">${card.id.toString().padStart(3, '0')}</div>
-                            </div>
-                            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px;">
-                                <div style="color: #aaa; font-size: 0.9rem;">Números Marcados</div>
-                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--gold-light);">${card.markedCount}/25</div>
-                            </div>
-                            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px;">
-                                <div style="color: #aaa; font-size: 0.9rem;">Total Sorteados</div>
-                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--gold-light);">${this.drawnNumbers.length}</div>
-                            </div>
-                        </div>
-                        ${card.hasBingo ? `
-                        <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 10px; color: #000; font-weight: bold; text-align: center;">
-                            <i class="fas fa-trophy"></i> Esta cartela completou BINGO!
-                        </div>
-                        ` : ''}
-                    </div>
-                `;
-                
-                document.getElementById('modalCardContent').innerHTML = html;
-                document.getElementById('cardModal').style.display = 'flex';
-            }
-            
-            hideModal() {
-                document.getElementById('cardModal').style.display = 'none';
-            }
-            
-            removeCard(cardId) {
-                if (confirm(`Remover ${this.cards.find(c => c.id === cardId).name}?`)) {
-                    this.cards = this.cards.filter(c => c.id !== cardId);
-                    this.winners = this.winners.filter(w => w.cardId !== cardId);
-                    this.renderCards();
-                    this.updateUI();
-                    this.saveToStorage();
-                    this.showNotification('Cartela removida com sucesso');
-                }
-            }
-            
-            updateUI() {
-                document.getElementById('ballsDrawn').textContent = this.drawnNumbers.length;
-                document.getElementById('remainingBalls').textContent = this.availableNumbers.length;
-                document.getElementById('cardsCount').textContent = this.cards.length;
-                document.getElementById('winnersCount').textContent = this.winners.length;
-                
-                const autoBtn = document.getElementById('autoSpinBtn');
-                autoBtn.innerHTML = this.isAutoSpinning ? 
-                    '<i class="fas fa-stop"></i> PARAR AUTO' : 
-                    '<i class="fas fa-redo-alt"></i> AUTO SPIN';
-                autoBtn.disabled = this.bingoActive || this.isSpinning;
-                
-                const spinBtn = document.getElementById('spinBtn');
-                spinBtn.disabled = this.bingoActive || this.isPaused || this.isSpinning;
-                
-                const continueBtn = document.getElementById('continueAfterBingoBtn');
-                continueBtn.style.display = this.bingoActive ? 'flex' : 'none';
-            }
-            
-            updateProgressBar() {
-                const progress = (this.drawnNumbers.length / 90) * 100;
-                document.getElementById('progressFill').style.width = `${progress}%`;
-            }
-            
-            toggleAutoSpin() {
-                if (this.isPaused || this.gameState === 'finished' || this.bingoActive || this.isSpinning) return;
-                
-                this.isAutoSpinning = !this.isAutoSpinning;
-                
-                if (this.isAutoSpinning) {
-                    this.autoSpinInterval = setInterval(() => {
-                        if (!this.isPaused && this.availableNumbers.length > 0 && 
-                            this.gameState !== 'finished' && !this.bingoActive && !this.isSpinning) {
-                            this.spinRoulette();
-                        } else {
-                            this.toggleAutoSpin();
-                        }
-                    }, 5500);
-                } else {
-                    clearInterval(this.autoSpinInterval);
-                }
-                
-                this.updateUI();
-                this.showNotification(this.isAutoSpinning ? 'Auto-spin ativado' : 'Auto-spin desativado');
-            }
-            
-            resetGame() {
-                if (confirm('Reiniciar o jogo? Os números sorteados serão resetados, mas as cartelas serão mantidas.')) {
-                    this.drawnNumbers = [];
-                    this.availableNumbers = Array.from({length: 90}, (_, i) => i + 1);
-                    this.winners = [];
-                    this.gameState = 'active';
-                    this.isAutoSpinning = false;
-                    this.isPaused = false;
-                    this.bingoActive = false;
-                    this.isSpinning = false;
-                    
-                    clearInterval(this.autoSpinInterval);
-                    this.stopSpinTimer();
-                    
-                    this.cards.forEach(card => {
-                        card.hasBingo = false;
-                        card.markedCount = 0;
-                    });
-                    
-                    const roulette = document.getElementById('rouletteWheel');
-                    roulette.style.transition = 'none';
-                    roulette.style.transform = 'rotate(0deg)';
-                    
-                    Object.values(this.sounds).forEach(sound => {
-                        if (sound) {
-                            sound.pause();
-                            sound.currentTime = 0;
-                        }
-                    });
-                    
-                    if (this.musicEnabled) {
-                        setTimeout(() => {
-                            this.sounds.music.play().catch(e => console.log('Música não pode ser reproduzida'));
-                        }, 500);
-                    }
-                    
-                    this.updateUI();
-                    this.updateProgressBar();
-                    this.renderNumbersGrid();
-                    this.renderCards();
-                    this.hideBingoMessage();
-                    this.saveToStorage();
-                    
-                    this.currentTimer = 5;
-                    this.updateTimerDisplay();
-                    
-                    setTimeout(() => {
-                        roulette.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.21, 0.99)';
-                    }, 10);
-                    
-                    this.showNotification('Jogo reiniciado com sucesso!');
-                }
-            }
-            
-            exportData() {
-                const data = {
-                    cards: this.cards,
-                    drawnNumbers: this.drawnNumbers,
-                    winners: this.winners,
-                    exportDate: new Date().toISOString(),
-                    totalCards: this.cards.length,
-                    completedCards: this.winners.length,
-                    totalNumbers: 90
-                };
-                
-                const dataStr = JSON.stringify(data, null, 2);
-                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-                
-                const exportFileDefaultName = `bingo_casino_elite_export_${new Date().toISOString().split('T')[0]}.json`;
-                
-                const linkElement = document.createElement('a');
-                linkElement.setAttribute('href', dataUri);
-                linkElement.setAttribute('download', exportFileDefaultName);
-                linkElement.click();
-                
-                this.showNotification('Dados exportados com sucesso!');
-            }
-            
-            showNotification(message) {
-                const notification = document.createElement('div');
-                notification.style.cssText = `
-                    position: fixed;
-                    top: 30px;
-                    right: 30px;
-                    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-                    color: #000;
-                    padding: 20px 30px;
-                    border-radius: 15px;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-                    z-index: 4000;
-                    font-weight: 800;
-                    font-size: 1.1rem;
-                    animation: slideIn 0.4s ease, fadeOut 0.4s ease 2.6s;
-                    animation-fill-mode: forwards;
-                    backdrop-filter: blur(10px);
-                    border: 2px solid rgba(255,255,255,0.3);
-                    min-width: 300px;
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                `;
-                
-                notification.innerHTML = `
-                    <i class="fas fa-check-circle fa-lg"></i>
-                    <span>${message}</span>
-                `;
-                
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 3000);
-                
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes slideIn {
-                        from { transform: translateX(100%) translateY(-20px); opacity: 0; }
-                        to { transform: translateX(0) translateY(0); opacity: 1; }
-                    }
-                    @keyframes fadeOut {
-                        from { opacity: 1; }
-                        to { opacity: 0; }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-            
-            stopSound(soundName) {
-                const sound = this.sounds[soundName];
-                if (sound) {
-                    sound.pause();
-                    sound.currentTime = 0;
-                }
-            }
-        }
+    <!-- REGRA DE BINGO (colapsável) -->
+    <div class="bingo-rules-wrap">
+      <button class="bingo-rules-toggle" id="rulesToggleBtn" onclick="toggleRules()">
+        <span>🏆 Regra do Bingo</span>
+        <span style="display:flex;align-items:center;gap:8px;">
+          <span id="ruleActiveBadge" class="rule-active-badge" style="margin:0;">📏 <strong id="ruleActiveLabel">Linha Horizontal</strong></span>
+          <span class="rules-chevron" id="rulesChevron">▼</span>
+        </span>
+      </button>
+      <div class="bingo-rules-body" id="rulesBody">
+        <div class="bingo-rules-grid">
 
-        let bingoSystemElite;
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            bingoSystemElite = new BingoCasinoEliteSystem();
-            window.bingoSystemElite = bingoSystemElite;
-            
-            if (bingoSystemElite.cards.length === 0) {
-                bingoSystemElite.showNotification('Bem-vindo ao Bingo Casino Elite 90! Gere cartelas para começar.');
-            } else {
-                bingoSystemElite.showNotification(`Sistema carregado com ${bingoSystemElite.cards.length} cartelas`);
-            }
+        <!-- Linha horizontal -->
+        <button class="rule-btn active" id="rule-row" onclick="setRule('row')">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="10" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="18" y="10" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="26" y="10" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="2" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+          </svg>
+          <span class="rule-btn-label">Linha<br>Horizontal</span>
+        </button>
+
+        <!-- Coluna vertical -->
+        <button class="rule-btn" id="rule-col" onclick="setRule('col')">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="10" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="2" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="10" y="18" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="10" y="26" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="18" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="10" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="10" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+          </svg>
+          <span class="rule-btn-label">Coluna<br>Vertical</span>
+        </button>
+
+        <!-- Linha ou Coluna -->
+        <button class="rule-btn" id="rule-any" onclick="setRule('any')">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="10" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="2" y="18" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="2" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="2" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="10" y="18" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="10" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="2" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="18" y="10" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="18" y="18" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="18" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="2" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="26" y="10" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="26" y="18" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="26" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+          </svg>
+          <span class="rule-btn-label">Linha<br>ou Coluna</span>
+        </button>
+
+        <!-- Diagonal -->
+        <button class="rule-btn" id="rule-diag" onclick="setRule('diag')">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="6" height="6" rx="1.5" fill="#6366f1"/>
+            <rect x="10" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="10" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#6366f1"/>
+            <rect x="18" y="10" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="10" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="18" width="6" height="6" rx="1.5" fill="#6366f1"/>
+            <rect x="26" y="18" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="2" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="10" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="26" width="6" height="6" rx="1.5" fill="#6366f1"/>
+          </svg>
+          <span class="rule-btn-label">Diagonal</span>
+        </button>
+
+        <!-- Cartela cheia -->
+        <button class="rule-btn" id="rule-full" onclick="setRule('full')">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="10" y="2" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="18" y="2" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="26" y="2" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="2" y="10" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="18" y="10" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="26" y="10" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="2" y="18" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="10" y="18" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="18" y="18" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="26" y="18" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="2" y="26" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="10" y="26" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="18" y="26" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+            <rect x="26" y="26" width="6" height="6" rx="1.5" fill="#f43f5e"/>
+          </svg>
+          <span class="rule-btn-label">Cartela<br>Cheia</span>
+        </button>
+
+        <!-- Qualquer (padrão clássico) -->
+        <button class="rule-btn" id="rule-classic" onclick="setRule('classic')">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="10" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="2" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="2" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="2" y="10" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#6366f1"/>
+            <rect x="18" y="10" width="6" height="6" rx="1.5" fill="#6366f1"/>
+            <rect x="26" y="10" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="2" y="18" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="10" y="18" width="6" height="6" rx="1.5" fill="#6366f1"/>
+            <rect x="18" y="18" width="6" height="6" rx="1.5" fill="#6366f1"/>
+            <rect x="26" y="18" width="6" height="6" rx="1.5" fill="#10b981"/>
+            <rect x="2" y="26" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+            <rect x="10" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="18" y="26" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/>
+            <rect x="26" y="26" width="6" height="6" rx="1.5" fill="#f59e0b"/>
+          </svg>
+          <span class="rule-btn-label">Clássico<br>(Qualquer)</span>
+        </button>
+
+      </div><!-- /bingo-rules-grid -->
+      </div><!-- /bingo-rules-body -->
+    </div><!-- /bingo-rules-wrap -->
+
+    <div class="globe-controls">
+      <button class="btn btn-primary" id="globeDrawBtn" onclick="drawBall()" style="font-size:16px;padding:14px 28px;">🎱 Sortear número</button>
+      <button class="btn btn-outline" onclick="resetGlobe()">↺ Reiniciar</button>
+      <button class="btn btn-outline" onclick="closeModal('globeModal')">Fechar</button>
+    </div>
+
+    <div class="drawn-balls-wrap">
+      <div class="drawn-balls-label">Números sorteados</div>
+      <div class="drawn-balls-list" id="drawnBallsList"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ────────────────────────────────────────────────────────
+// IndexedDB
+// ────────────────────────────────────────────────────────
+const DB_NAME = 'BingoDB';
+const DB_VERSION = 1;
+const STORE = 'cartelas';
+let db;
+
+function openDB() {
+  return new Promise((res, rej) => {
+    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    req.onupgradeneeded = e => {
+      const d = e.target.result;
+      if (!d.objectStoreNames.contains(STORE)) {
+        d.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
+      }
+    };
+    req.onsuccess = e => { db = e.target.result; res(db); };
+    req.onerror = e => rej(e);
+  });
+}
+
+function dbGetAll() {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readonly');
+    const req = tx.objectStore(STORE).getAll();
+    req.onsuccess = () => res(req.result);
+    req.onerror = e => rej(e);
+  });
+}
+
+function dbAddMany(items) {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    const store = tx.objectStore(STORE);
+    items.forEach(item => store.add(item));
+    tx.oncomplete = () => res();
+    tx.onerror = e => rej(e);
+  });
+}
+
+function dbDelete(id) {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    tx.objectStore(STORE).delete(id);
+    tx.oncomplete = () => res();
+    tx.onerror = e => rej(e);
+  });
+}
+
+function dbClear() {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    tx.objectStore(STORE).clear();
+    tx.oncomplete = () => res();
+    tx.onerror = e => rej(e);
+  });
+}
+
+// ────────────────────────────────────────────────────────
+// Geração de cartelas (modelo BINGO: B=1-15, I=16-30, N=31-45, G=46-60, O=61-75)
+// ────────────────────────────────────────────────────────
+const RANGES = [
+  [1, 15],  // B
+  [16, 30], // I
+  [31, 45], // N
+  [46, 60], // G
+  [61, 75]  // O
+];
+
+function generateCard(numero, hasFree) {
+  const cols = RANGES.map(([min, max]) => {
+    const pool = [];
+    for (let n = min; n <= max; n++) pool.push(n);
+    const picked = [];
+    while (picked.length < 5) {
+      const idx = Math.floor(Math.random() * pool.length);
+      picked.push(pool.splice(idx, 1)[0]);
+    }
+    return picked;
+  });
+
+  // Build 5x5 grid row by row
+  const grid = [];
+  for (let row = 0; row < 5; row++) {
+    for (let col = 0; col < 5; col++) {
+      if (hasFree && row === 2 && col === 2) {
+        grid.push('FREE');
+      } else {
+        grid.push(cols[col][row]);
+      }
+    }
+  }
+  return { numero, grid, hasFree };
+}
+
+// ────────────────────────────────────────────────────────
+// Estado
+// ────────────────────────────────────────────────────────
+let allCards = [];
+let currentPage = 1;
+
+async function loadAll() {
+  allCards = await dbGetAll();
+  updateBadge();
+  render();
+  // Restaura marcações persistidas
+  const saved = loadDrawnState();
+  if (saved.length > 0) {
+    globeDrawn = saved;
+    buildGlobeNumbers();
+    const drawnNums = new Set(globeDrawn.map(d => d.n));
+    globeRemaining  = globeAllNumbers.filter(x => !drawnNums.has(x.n));
+    refreshAllCardVisuals(false);
+  }
+}
+
+function updateBadge() {
+  document.getElementById('totalBadge').textContent = allCards.length;
+}
+
+// ────────────────────────────────────────────────────────
+// Gerar
+// ────────────────────────────────────────────────────────
+async function generateCards() {
+  const qtd = parseInt(document.getElementById('qtdCartelas').value) || 6;
+  const inicio = parseInt(document.getElementById('numInicio').value) || 1;
+  const hasFree = document.getElementById('hasFreeSel').value === 'yes';
+
+  if (qtd < 1 || qtd > 500) { toast('Quantidade entre 1 e 500', 'error'); return; }
+
+  showLoading(true);
+
+  // pequeno delay para não travar UI
+  await new Promise(r => setTimeout(r, 50));
+
+  // Determina próximo número
+  const existing = allCards.map(c => c.numero);
+  let nextNum = inicio;
+  const cards = [];
+  for (let i = 0; i < qtd; i++) {
+    while (existing.includes(nextNum) || cards.some(c => c.numero === nextNum)) nextNum++;
+    cards.push(generateCard(nextNum++, hasFree));
+  }
+
+  await dbAddMany(cards);
+  await loadAll();
+  showLoading(false);
+  toast(`✅ ${qtd} cartela(s) gerada(s)!`, 'success');
+  // Atualiza campo numInicio
+  document.getElementById('numInicio').value = nextNum;
+}
+
+// ────────────────────────────────────────────────────────
+// Render
+// ────────────────────────────────────────────────────────
+const LETTERS = ['B','I','N','G','O'];
+const COL_COLORS = ['#e11d48','#d97706','#15803d','#1d4ed8','#7c3aed'];
+
+function cardHTML(card) {
+  const headerCells = LETTERS.map((l, i) =>
+    `<div class="bingo-letter" style="background:${COL_COLORS[i]}">${l}</div>`
+  ).join('');
+
+  const drawnSet = new Set(globeDrawn.map(d => d.n));
+
+  const cells = card.grid.map((v, idx) => {
+    if (v === 'FREE') {
+      const isMarked = globeDrawn.length > 0 || true; // FREE sempre marcado durante jogo
+      return `<div class="card-cell free${globeDrawn.length > 0 ? ' marked' : ''}" data-value="FREE"><span>⭐ LIVRE</span></div>`;
+    }
+    const marked = drawnSet.has(v) ? ' marked' : '';
+    return `<div class="card-cell${marked}" data-value="${v}"><span>${v}</span></div>`;
+  }).join('');
+
+  const hasBingo = globeDrawn.length > 0 && checkBingo(card, drawnSet);
+
+  return `
+    <div class="bingo-card${hasBingo ? ' has-bingo' : ''}" id="card-${card.id}">
+      <div class="card-header">${headerCells}</div>
+      <div class="card-body">
+        <div class="card-grid">${cells}</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-number">Cartela #${card.numero}</span>
+        <span>${hasBingo ? '<span class="bingo-badge">🏆 BINGO!</span>' : ''}</span>
+        <button class="card-delete" onclick="deleteCard(${card.id})" title="Excluir cartela">✕</button>
+      </div>
+    </div>`;
+}
+
+function render() {
+  const container = document.getElementById('cardsContainer');
+  const paginationEl = document.getElementById('pagination');
+  const perPageVal = document.getElementById('perPageSel').value;
+
+  if (allCards.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="icon">🎱</div><h3>Nenhuma cartela ainda</h3><p>Clique em "Gerar Cartelas" para começar!</p></div>`;
+    paginationEl.innerHTML = '';
+    return;
+  }
+
+  let visible;
+  if (perPageVal === 'all') {
+    visible = allCards;
+    paginationEl.innerHTML = '';
+  } else {
+    const perPage = parseInt(perPageVal);
+    const totalPages = Math.ceil(allCards.length / perPage);
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * perPage;
+    visible = allCards.slice(start, start + perPage);
+
+    // Pagination
+    let pages = '';
+    for (let p = 1; p <= totalPages; p++) {
+      pages += `<button class="page-btn${p === currentPage ? ' active' : ''}" onclick="goPage(${p})">${p}</button>`;
+    }
+    paginationEl.innerHTML = `
+      <button class="page-btn" onclick="goPage(${Math.max(1,currentPage-1)})">‹</button>
+      ${pages}
+      <button class="page-btn" onclick="goPage(${Math.min(totalPages,currentPage+1)})">›</button>`;
+  }
+
+  container.innerHTML = `<div class="cards-grid">${visible.map(cardHTML).join('')}</div>`;
+  // Re-aplica marcações após re-render (ex: troca de página)
+  if (globeDrawn && globeDrawn.length > 0) refreshAllCardVisuals(false);
+}
+
+function goPage(p) {
+  currentPage = p;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ────────────────────────────────────────────────────────
+// Deletar
+// ────────────────────────────────────────────────────────
+async function deleteCard(id) {
+  await dbDelete(id);
+  allCards = allCards.filter(c => c.id !== id);
+  updateBadge();
+  render();
+  toast('Cartela excluída', 'info');
+}
+
+function showDeleteAllModal() {
+  if (allCards.length === 0) { toast('Não há cartelas para excluir', 'error'); return; }
+  document.getElementById('delCount').textContent = allCards.length;
+  document.getElementById('deleteAllModal').classList.add('open');
+}
+
+async function deleteAll() {
+  await dbClear();
+  allCards = [];
+  globeDrawn = [];
+  buildGlobeNumbers();
+  globeRemaining = [...globeAllNumbers];
+  clearDrawnState();
+  clearCardMarkings();
+  updateBadge();
+  render();
+  closeModal('deleteAllModal');
+  toast('Todas as cartelas foram excluídas', 'info');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  if (id === 'globeModal') stopGlobeAnim();
+}
+
+// ────────────────────────────────────────────────────────
+// Buscar
+// ────────────────────────────────────────────────────────
+function showSearchModal() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResult').innerHTML = '';
+  document.getElementById('searchModal').classList.add('open');
+}
+
+function searchCard() {
+  const num = parseInt(document.getElementById('searchInput').value);
+  const found = allCards.find(c => c.numero === num);
+  const resultEl = document.getElementById('searchResult');
+  if (found) {
+    resultEl.innerHTML = cardHTML(found);
+    resultEl.style.marginTop = '16px';
+  } else {
+    resultEl.innerHTML = `<p style="color:var(--accent4);font-weight:700;">Cartela #${num} não encontrada.</p>`;
+  }
+}
+
+// ────────────────────────────────────────────────────────
+// PDF — 6 cartelas por página, fiel ao modelo
+// ────────────────────────────────────────────────────────
+async function downloadPDF() {
+  if (allCards.length === 0) { toast('Nenhuma cartela para exportar', 'error'); return; }
+
+  showLoading(true);
+  toast('Gerando PDF...', 'info');
+  await new Promise(r => setTimeout(r, 80));
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+  const PAGE_W = 210;
+  const PAGE_H = 297;
+  const MARGIN = 8;
+  const CARDS_PER_PAGE = 6;
+  const COLS = 2;
+  const ROWS = 3;
+
+  const cardW = (PAGE_W - MARGIN * 2 - 6) / COLS;
+  const cardH = (PAGE_H - MARGIN * 3 - 16) / ROWS;
+
+  const CELL_COLS = 5;
+  const HEADER_H = 8;
+  const FOOTER_H = 6;
+  const gridH = cardH - HEADER_H - FOOTER_H;
+  const cellW = cardW / CELL_COLS;
+  const cellH = gridH / CELL_COLS;
+
+  const PDF_COL_COLORS = [
+    [225, 29, 72],
+    [217, 119, 6],
+    [21, 128, 61],
+    [29, 78, 216],
+    [124, 58, 237]
+  ];
+
+  for (let i = 0; i < allCards.length; i++) {
+    const card = allCards[i];
+    const pageIdx = Math.floor(i / CARDS_PER_PAGE);
+    const posOnPage = i % CARDS_PER_PAGE;
+
+    if (posOnPage === 0 && i > 0) doc.addPage();
+    if (posOnPage === 0) {
+      // Título da página - fundo branco
+      doc.setFillColor(255, 255, 255);
+      doc.rect(0, 0, PAGE_W, PAGE_H, 'F');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(30, 41, 59);
+      doc.text(`BINGO — ${allCards.length} CARTELA(S)`, PAGE_W / 2, MARGIN - 1, { align: 'center' });
+    }
+
+    const col = posOnPage % COLS;
+    const row = Math.floor(posOnPage / COLS);
+    const x = MARGIN + col * (cardW + 6);
+    const y = MARGIN + 4 + row * (cardH + 5);
+
+    // Card border
+    doc.setDrawColor(80, 80, 80);
+    doc.setLineWidth(0.3);
+    doc.setFillColor(255, 255, 255);
+    doc.roundedRect(x, y, cardW, cardH, 2, 2, 'FD');
+
+    // Header letters
+    for (let c = 0; c < 5; c++) {
+      const lx = x + c * cellW;
+      const [r, g, b] = PDF_COL_COLORS[c];
+      doc.setFillColor(r, g, b);
+      if (c === 0) doc.roundedRect(lx, y, cellW, HEADER_H, 2, 0, 'F');
+      else if (c === 4) doc.roundedRect(lx, y, cellW, HEADER_H, 0, 2, 'F');
+      else doc.rect(lx, y, cellW, HEADER_H, 'F');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(255, 255, 255);
+      doc.text(LETTERS[c], lx + cellW / 2, y + HEADER_H - 2, { align: 'center' });
+    }
+
+    // Grid
+    for (let cell = 0; cell < 25; cell++) {
+      const cr = Math.floor(cell / 5);
+      const cc = cell % 5;
+      const cx = x + cc * cellW;
+      const cy = y + HEADER_H + cr * cellH;
+      const val = card.grid[cell];
+
+      doc.setDrawColor(210, 210, 210);
+      doc.setLineWidth(0.2);
+      doc.rect(cx, cy, cellW, cellH);
+
+      if (val === 'FREE') {
+        doc.setFillColor(254, 243, 199);
+        doc.rect(cx, cy, cellW, cellH, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(5.5);
+        doc.setTextColor(180, 83, 9);
+        doc.text('⭐ LIVRE', cx + cellW / 2, cy + cellH / 2 + 1.5, { align: 'center' });
+      } else {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(30, 41, 59);
+        doc.text(String(val), cx + cellW / 2, cy + cellH / 2 + 2, { align: 'center' });
+      }
+    }
+
+    // Footer
+    const fy = y + HEADER_H + gridH;
+    doc.setFillColor(248, 250, 252);
+    doc.rect(x, fy, cardW, FOOTER_H, 'F');
+    doc.setDrawColor(226, 232, 240);
+    doc.setLineWidth(0.3);
+    doc.line(x, fy, x + cardW, fy);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(100, 116, 139);
+    doc.text(`Cartela #${card.numero}`, x + cardW / 2, fy + FOOTER_H - 1.5, { align: 'center' });
+  }
+
+  doc.save(`bingo_cartelas_${allCards.length}.pdf`);
+  showLoading(false);
+  toast(`✅ PDF gerado com ${allCards.length} cartela(s)!`, 'success');
+}
+
+// ────────────────────────────────────────────────────────
+// Utilitários UI
+// ────────────────────────────────────────────────────────
+function showLoading(show) {
+  document.getElementById('loadingBar').classList.toggle('show', show);
+}
+
+function toast(msg, type = 'info') {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+  el.innerHTML = `<span>${icons[type]||'ℹ️'}</span><span>${msg}</span>`;
+  document.getElementById('toastContainer').appendChild(el);
+  setTimeout(() => {
+    el.style.animation = 'fadeOut 0.3s ease forwards';
+    setTimeout(() => el.remove(), 300);
+  }, 3000);
+}
+
+// Fechar modal ao clicar fora
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+});
+
+// Enter na busca
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+});
+
+// ────────────────────────────────────────────────────────
+// Globo de Sorteio
+// ────────────────────────────────────────────────────────
+const GLOBE_LETTERS   = ['B','I','N','G','O'];
+const GLOBE_BALL_COLORS = ['#f43f5e','#f59e0b','#10b981','#3b82f6','#a78bfa'];
+const GLOBE_STORE_KEY = 'bingo_drawn_numbers';
+const GLOBE_RULE_KEY  = 'bingo_rule';
+
+let globeAllNumbers  = [];
+let globeRemaining   = [];
+let globeDrawn       = [];
+let globeSpinInterval = null;
+let globeAnimFrame   = null;
+
+// Regra ativa: 'row' | 'col' | 'any' | 'diag' | 'full' | 'classic'
+let activeRule = localStorage.getItem(GLOBE_RULE_KEY) || 'row';
+
+const RULE_LABELS = {
+  row:     'Linha Horizontal',
+  col:     'Coluna Vertical',
+  any:     'Linha ou Coluna',
+  diag:    'Diagonal',
+  full:    'Cartela Cheia',
+  classic: 'Clássico (Qualquer)'
+};
+
+function setRule(rule) {
+  activeRule = rule;
+  localStorage.setItem(GLOBE_RULE_KEY, rule);
+  // Atualiza botões
+  document.querySelectorAll('.rule-btn').forEach(btn => btn.classList.remove('active'));
+  document.getElementById(`rule-${rule}`).classList.add('active');
+  document.getElementById('ruleActiveLabel').textContent = RULE_LABELS[rule];
+  // Re-aplica visuais com nova regra
+  refreshAllCardVisuals(false);
+}
+
+function toggleRules() {
+  const body    = document.getElementById('rulesBody');
+  const chevron = document.getElementById('rulesChevron');
+  const isOpen  = body.classList.toggle('open');
+  chevron.classList.toggle('open', isOpen);
+}
+
+// ── Persistência ──────────────────────────────────────────
+function saveDrawnState() {
+  localStorage.setItem(GLOBE_STORE_KEY, JSON.stringify(globeDrawn));
+}
+
+function loadDrawnState() {
+  try {
+    const raw = localStorage.getItem(GLOBE_STORE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function clearDrawnState() {
+  localStorage.removeItem(GLOBE_STORE_KEY);
+}
+
+// ── Análise de vitória respeitando a regra ativa ──────────
+function analyzeCard(card, drawnSet) {
+  const g   = card.grid;
+  const hit = (v) => v === 'FREE' || drawnSet.has(v);
+  const completedRows = [];
+  const completedCols = [];
+  let   diagMain = false, diagSec = false;
+
+  for (let r = 0; r < 5; r++) {
+    if ([0,1,2,3,4].every(c => hit(g[r*5+c]))) completedRows.push(r);
+  }
+  for (let c = 0; c < 5; c++) {
+    if ([0,1,2,3,4].every(r => hit(g[r*5+c]))) completedCols.push(c);
+  }
+  if ([0,1,2,3,4].every(i => hit(g[i*5+i])))     diagMain = true;
+  if ([0,1,2,3,4].every(i => hit(g[i*5+(4-i)]))) diagSec  = true;
+  const fullCard = [0,1,2,3,4].every(r => completedRows.includes(r));
+
+  // Determina BINGO segundo a regra ativa
+  let bingo = false;
+  switch (activeRule) {
+    case 'row':     bingo = completedRows.length > 0; break;
+    case 'col':     bingo = completedCols.length > 0; break;
+    case 'any':     bingo = completedRows.length > 0 || completedCols.length > 0; break;
+    case 'diag':    bingo = diagMain || diagSec; break;
+    case 'full':    bingo = fullCard; break;
+    case 'classic': bingo = completedRows.length > 0 || completedCols.length > 0 || diagMain || diagSec; break;
+    default:        bingo = completedRows.length > 0;
+  }
+
+  return { bingo, completedRows, completedCols, diagMain, diagSec, fullCard };
+}
+
+// Atalho legado para checkBingo (usado no cardHTML)
+function checkBingo(card, drawnSet) {
+  return analyzeCard(card, drawnSet).bingo;
+}
+
+// ── Aplica marcações visuais em uma cartela DOM ───────────
+function applyCardVisuals(card, cardEl, drawnSet, animate = false) {
+  const { completedRows, completedCols, diagMain, diagSec, fullCard, bingo } = analyzeCard(card, drawnSet);
+  const cells  = cardEl.querySelectorAll('.card-cell');
+  const footer = cardEl.querySelector('.card-footer');
+
+  cells.forEach((cell, idx) => {
+    const val = card.grid[idx];
+    const isHit = val === 'FREE' || drawnSet.has(val);
+    const r = Math.floor(idx / 5);
+    const c = idx % 5;
+
+    // Decide quais células brilham como "linha-vencedora" conforme a regra
+    let highlighted = false;
+    switch (activeRule) {
+      case 'row':
+        highlighted = completedRows.includes(r); break;
+      case 'col':
+        highlighted = completedCols.includes(c); break;
+      case 'any':
+        highlighted = completedRows.includes(r) || completedCols.includes(c); break;
+      case 'diag':
+        highlighted = (diagMain && r === c) || (diagSec && r === (4-c)); break;
+      case 'full':
+        highlighted = fullCard; break;
+      case 'classic':
+        highlighted = completedRows.includes(r) || completedCols.includes(c)
+                   || (diagMain && r === c) || (diagSec && r === (4-c)); break;
+    }
+
+    cell.classList.toggle('marked',   isHit);
+    cell.classList.toggle('line-win', isHit && highlighted);
+
+    if (animate && isHit && !cell.dataset.animated) {
+      cell.dataset.animated = '1';
+      cell.style.transform = 'scale(1.18)';
+      setTimeout(() => { cell.style.transform = ''; }, 320);
+    }
+  });
+
+  // Badge BINGO
+  const existingBadge = footer.querySelector('.bingo-badge');
+  if (bingo && !existingBadge) {
+    const badge = document.createElement('span');
+    badge.className = 'bingo-badge';
+    badge.textContent = '🏆 BINGO!';
+    footer.insertBefore(badge, footer.querySelector('.card-delete'));
+  } else if (!bingo && existingBadge) {
+    existingBadge.remove();
+  }
+
+  cardEl.classList.toggle('has-bingo', bingo);
+}
+
+// ── Atualiza todas as cartelas visíveis ───────────────────
+function refreshAllCardVisuals(animate = false) {
+  const drawnSet = new Set(globeDrawn.map(d => d.n));
+  allCards.forEach(card => {
+    const cardEl = document.getElementById(`card-${card.id}`);
+    if (cardEl) applyCardVisuals(card, cardEl, drawnSet, animate);
+  });
+}
+
+// ── Marca após cada sorteio (só o número novo + checa vitória) ─
+function markDrawnOnCards(drawnNumber) {
+  const drawnSet = new Set(globeDrawn.map(d => d.n));
+
+  // Célula do número recém-sorteado
+  document.querySelectorAll(`.card-cell[data-value="${drawnNumber}"]`).forEach(cell => {
+    cell.classList.add('marked');
+    cell.style.transform = 'scale(1.18)';
+    setTimeout(() => { cell.style.transform = ''; }, 320);
+  });
+
+  // Verifica vitórias em cada cartela visível
+  const notifiedBingo = new Set();
+  const notifiedLine  = new Set();
+
+  allCards.forEach(card => {
+    const cardEl = document.getElementById(`card-${card.id}`);
+    if (!cardEl) return;
+
+    const alreadyBingo = cardEl.classList.contains('has-bingo');
+    applyCardVisuals(card, cardEl, drawnSet, false);
+
+    const { bingo, completedRows, completedCols, diagMain, diagSec } = analyzeCard(card, drawnSet);
+
+    if (bingo && !alreadyBingo && !notifiedBingo.has(card.id)) {
+      notifiedBingo.add(card.id);
+      toast(`🏆 BINGO! Cartela #${card.numero} (${RULE_LABELS[activeRule]})`, 'success');
+    } else if (!alreadyBingo) {
+      // Notifica progresso apenas quando a regra não exige cartela cheia
+      if (activeRule !== 'full') {
+        completedRows.forEach(r => {
+          const key = `${card.id}-r${r}`;
+          if (!notifiedLine.has(key)) {
+            notifiedLine.add(key);
+            if (activeRule === 'col' || activeRule === 'diag') return; // não relevante pra essa regra
+            toast(`🎯 Linha ${r+1} completa! Cartela #${card.numero}`, 'info');
+          }
         });
-    </script>
+        completedCols.forEach(c => {
+          const key = `${card.id}-c${c}`;
+          if (!notifiedLine.has(key)) {
+            notifiedLine.add(key);
+            if (activeRule === 'row' || activeRule === 'diag') return;
+            toast(`🎯 Coluna ${GLOBE_LETTERS[c]} completa! Cartela #${card.numero}`, 'info');
+          }
+        });
+        if (diagMain) {
+          const key = `${card.id}-dm`;
+          if (!notifiedLine.has(key)) {
+            notifiedLine.add(key);
+            if (activeRule === 'row' || activeRule === 'col') return;
+            toast(`🎯 Diagonal principal! Cartela #${card.numero}`, 'info');
+          }
+        }
+        if (diagSec) {
+          const key = `${card.id}-ds`;
+          if (!notifiedLine.has(key)) {
+            notifiedLine.add(key);
+            if (activeRule === 'row' || activeRule === 'col') return;
+            toast(`🎯 Diagonal secundária! Cartela #${card.numero}`, 'info');
+          }
+        }
+      }
+    }
+  });
+}
+
+// ── Limpa marcações DOM (chamado só no "Limpar tudo") ─────
+function clearCardMarkings() {
+  document.querySelectorAll('.card-cell').forEach(c => {
+    c.classList.remove('marked', 'line-win');
+    delete c.dataset.animated;
+  });
+  document.querySelectorAll('.bingo-card').forEach(c => c.classList.remove('has-bingo'));
+  document.querySelectorAll('.bingo-badge').forEach(b => b.remove());
+}
+
+// ── Construção do pool de números ────────────────────────
+function buildGlobeNumbers() {
+  globeAllNumbers = [];
+  for (let col = 0; col < 5; col++) {
+    const [min, max] = RANGES[col];
+    for (let n = min; n <= max; n++) globeAllNumbers.push({ n, col });
+  }
+}
+
+// ── Abre modal restaurando estado salvo ──────────────────
+function showGlobeModal() {
+  buildGlobeNumbers();
+
+  // Restaura regra salva
+  activeRule = localStorage.getItem(GLOBE_RULE_KEY) || 'row';
+  document.querySelectorAll('.rule-btn').forEach(btn => btn.classList.remove('active'));
+  const ruleBtn = document.getElementById(`rule-${activeRule}`);
+  if (ruleBtn) ruleBtn.classList.add('active');
+  document.getElementById('ruleActiveLabel').textContent = RULE_LABELS[activeRule] || RULE_LABELS['row'];
+
+  // Restaura sorteio salvo sem resetar
+  globeDrawn     = loadDrawnState();
+  const drawnNums = new Set(globeDrawn.map(d => d.n));
+  globeRemaining  = globeAllNumbers.filter(x => !drawnNums.has(x.n));
+
+  syncGlobeUI();
+  document.getElementById('globeModal').classList.add('open');
+  startGlobeIdle();
+}
+
+// ── Sincroniza a UI do modal com globeDrawn ──────────────
+function syncGlobeUI() {
+  document.getElementById('globeDrawnCount').textContent    = globeDrawn.length;
+  document.getElementById('globeTotalCount').textContent    = globeAllNumbers.length || 75;
+  document.getElementById('globeRemainingCount').textContent = globeRemaining.length;
+
+  const list = document.getElementById('drawnBallsList');
+  list.innerHTML = '';
+  // Mostra do mais antigo para o mais recente (prepend inverte)
+  [...globeDrawn].reverse().forEach(d => {
+    const ball = document.createElement('div');
+    ball.className = 'drawn-ball';
+    ball.setAttribute('data-col', d.col);
+    ball.title = `${GLOBE_LETTERS[d.col]}-${d.n}`;
+    ball.textContent = d.n;
+    list.appendChild(ball);
+  });
+
+  if (globeDrawn.length > 0) {
+    const last = globeDrawn[globeDrawn.length - 1];
+    document.getElementById('lastBallAnnounce').textContent = `${GLOBE_LETTERS[last.col]} — ${last.n}`;
+    const display = document.getElementById('globeBallDisplay');
+    display.style.display = 'flex';
+    document.getElementById('globeCurrentLetter').textContent = GLOBE_LETTERS[last.col];
+    document.getElementById('globeCurrentLetter').style.color = GLOBE_BALL_COLORS[last.col];
+    document.getElementById('globeCurrentNum').textContent = last.n;
+  } else {
+    document.getElementById('lastBallAnnounce').textContent = 'Pronto para sortear!';
+    document.getElementById('globeBallDisplay').style.display = 'none';
+  }
+
+  const btn = document.getElementById('globeDrawBtn');
+  btn.disabled = globeRemaining.length === 0;
+  btn.textContent = globeRemaining.length === 0 ? '🏆 Fim do jogo!' : '🎱 Sortear número';
+}
+
+// ── Reinicia o sorteio (limpa tudo) ──────────────────────
+function resetGlobe() {
+  globeDrawn     = [];
+  buildGlobeNumbers();
+  globeRemaining = [...globeAllNumbers];
+  clearDrawnState();
+  clearCardMarkings();
+  syncGlobeUI();
+  startGlobeIdle();
+}
+
+// ── Animação das bolinhas internas ───────────────────────
+const GLOBE_BALL_IDS = ['gb1','gb2','gb3','gb4','gb5','gb6','gb7'];
+let globePhase = 0;
+
+function startGlobeIdle() {
+  stopGlobeAnim();
+  animGlobeIdle();
+}
+
+function animGlobeIdle() {
+  globePhase += 0.04;
+  GLOBE_BALL_IDS.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const ox = parseFloat(el.getAttribute('cx'));
+    const oy = parseFloat(el.getAttribute('cy'));
+    const dx = Math.sin(globePhase + i * 1.1) * 6;
+    const dy = Math.cos(globePhase * 0.8 + i * 0.9) * 5;
+    el.setAttribute('cx', ox + dx * 0.04);
+    el.setAttribute('cy', oy + dy * 0.04);
+  });
+  globeAnimFrame = requestAnimationFrame(animGlobeIdle);
+}
+
+function stopGlobeAnim() {
+  if (globeAnimFrame)   { cancelAnimationFrame(globeAnimFrame); globeAnimFrame = null; }
+  if (globeSpinInterval){ clearInterval(globeSpinInterval);     globeSpinInterval = null; }
+}
+
+// ── Sorteia um número ────────────────────────────────────
+function drawBall() {
+  if (globeRemaining.length === 0) {
+    toast('Todos os números foram sorteados!', 'info');
+    return;
+  }
+
+  const btn = document.getElementById('globeDrawBtn');
+  btn.disabled = true;
+
+  const wrap = document.getElementById('globeWrap');
+  wrap.classList.add('globe-spinning');
+  document.getElementById('globeBallDisplay').style.display = 'none';
+  document.getElementById('lastBallAnnounce').textContent = '🎲 Sorteando...';
+
+  setTimeout(() => {
+    wrap.classList.remove('globe-spinning');
+
+    const idx   = Math.floor(Math.random() * globeRemaining.length);
+    const drawn = globeRemaining.splice(idx, 1)[0];
+    globeDrawn.push(drawn);
+
+    // Persiste imediatamente
+    saveDrawnState();
+
+    const letter = GLOBE_LETTERS[drawn.col];
+    const color  = GLOBE_BALL_COLORS[drawn.col];
+
+    // Centro do globo
+    document.getElementById('globeBallDisplay').style.display = 'flex';
+    document.getElementById('globeCurrentLetter').textContent = letter;
+    document.getElementById('globeCurrentLetter').style.color = color;
+    document.getElementById('globeCurrentNum').textContent    = drawn.n;
+
+    document.getElementById('lastBallAnnounce').textContent      = `${letter} — ${drawn.n}`;
+    document.getElementById('globeDrawnCount').textContent       = globeDrawn.length;
+    document.getElementById('globeRemainingCount').textContent   = globeRemaining.length;
+
+    // Bolinha na lista
+    const list = document.getElementById('drawnBallsList');
+    const ball = document.createElement('div');
+    ball.className = 'drawn-ball';
+    ball.setAttribute('data-col', drawn.col);
+    ball.title = `${letter}-${drawn.n}`;
+    ball.textContent = drawn.n;
+    list.prepend(ball);
+
+    // Marca cartelas + detecta vitórias
+    markDrawnOnCards(drawn.n);
+
+    btn.disabled = globeRemaining.length === 0;
+    btn.textContent = globeRemaining.length === 0 ? '🏆 Fim do jogo!' : '🎱 Sortear número';
+    if (globeRemaining.length === 0) toast('🏆 Todos os 75 números foram sorteados!', 'success');
+  }, 1000);
+}
+
+// ────────────────────────────────────────────────────────
+// Init
+// ────────────────────────────────────────────────────────
+openDB().then(loadAll).catch(err => {
+  console.error(err);
+  toast('Erro ao abrir banco de dados', 'error');
+});
+</script>
 </body>
 </html>
