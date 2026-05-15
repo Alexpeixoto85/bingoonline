@@ -314,6 +314,19 @@
     animation: popIn 0.4s ease;
   }
 
+  .downloaded-badge {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.15);
+    color: #059669;
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    margin-left: 4px;
+  }
+
   .card-cell:nth-child(5n+1) { border-left: none; }
   .card-cell:nth-last-child(-n+5) { border-bottom: none; }
 
@@ -1195,6 +1208,16 @@ function dbClear() {
   });
 }
 
+function dbPutMany(items) {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    const store = tx.objectStore(STORE);
+    items.forEach(item => store.put(item));
+    tx.oncomplete = () => res();
+    tx.onerror = e => rej(e);
+  });
+}
+
 // ────────────────────────────────────────────────────────
 // Geração de cartelas (modelo BINGO: B=1-15, I=16-30, N=31-45, G=46-60, O=61-75)
 // ────────────────────────────────────────────────────────
@@ -1321,7 +1344,10 @@ function cardHTML(card) {
       </div>
       <div class="card-footer">
         <span class="card-number">Cartela #${card.numero}</span>
-        <span>${hasBingo ? '<span class="bingo-badge">🏆 BINGO!</span>' : ''}</span>
+        <span>
+          ${hasBingo ? '<span class="bingo-badge">🏆 BINGO!</span>' : ''}
+          ${card.downloaded ? '<span class="downloaded-badge">✓ Baixada</span>' : ''}
+        </span>
         <button class="card-delete" onclick="deleteCard(${card.id})" title="Excluir cartela">✕</button>
       </div>
     </div>`;
@@ -1433,9 +1459,33 @@ function searchCard() {
 // PDF — 6 cartelas por página, fiel ao modelo
 // ────────────────────────────────────────────────────────
 async function downloadPDF() {
-  if (allCards.length === 0) { toast('Nenhuma cartela para exportar', 'error'); return; }
-
   showLoading(true);
+
+  // ── Detecta cartelas ainda não baixadas ──────────────────
+  let pendingCards = allCards.filter(c => !c.downloaded);
+
+  // Se todas já foram baixadas (ou não há nenhuma), gera automaticamente
+  // a mesma quantidade configurada, a partir do próximo número disponível
+  if (pendingCards.length === 0) {
+    const qtd     = parseInt(document.getElementById('qtdCartelas').value) || 6;
+    const hasFree = document.getElementById('hasFreeSel').value === 'yes';
+
+    const existing = allCards.map(c => c.numero);
+    const maxExisting = existing.length > 0 ? Math.max(...existing) : 0;
+    let nextNum = maxExisting + 1;
+
+    const newCards = [];
+    for (let i = 0; i < qtd; i++) {
+      while (existing.includes(nextNum) || newCards.some(c => c.numero === nextNum)) nextNum++;
+      newCards.push(generateCard(nextNum++, hasFree));
+    }
+
+    await dbAddMany(newCards);
+    await loadAll();
+    pendingCards = allCards.filter(c => !c.downloaded);
+    toast(`📋 ${newCards.length} novas cartelas geradas automaticamente!`, 'info');
+  }
+
   toast('Gerando PDF...', 'info');
   await new Promise(r => setTimeout(r, 80));
 
@@ -1467,21 +1517,21 @@ async function downloadPDF() {
     [124, 58, 237]
   ];
 
-  for (let i = 0; i < allCards.length; i++) {
-    const card = allCards[i];
-    const pageIdx = Math.floor(i / CARDS_PER_PAGE);
+  const firstNum = pendingCards[0].numero;
+  const lastNum  = pendingCards[pendingCards.length - 1].numero;
+
+  for (let i = 0; i < pendingCards.length; i++) {
+    const card = pendingCards[i];
     const posOnPage = i % CARDS_PER_PAGE;
 
     if (posOnPage === 0 && i > 0) doc.addPage();
     if (posOnPage === 0) {
-      // Título da página - fundo branco
       doc.setFillColor(255, 255, 255);
       doc.rect(0, 0, PAGE_W, PAGE_H, 'F');
-
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(11);
       doc.setTextColor(30, 41, 59);
-      doc.text(`BINGO — ${allCards.length} CARTELA(S)`, PAGE_W / 2, MARGIN - 1, { align: 'center' });
+      doc.text(`BINGO — Cartelas #${firstNum} a #${lastNum}`, PAGE_W / 2, MARGIN - 1, { align: 'center' });
     }
 
     const col = posOnPage % COLS;
@@ -1528,7 +1578,7 @@ async function downloadPDF() {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(5.5);
         doc.setTextColor(180, 83, 9);
-        doc.text('⭐ LIVRE', cx + cellW / 2, cy + cellH / 2 + 1.5, { align: 'center' });
+        doc.text('LIVRE', cx + cellW / 2, cy + cellH / 2 + 1.5, { align: 'center' });
       } else {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(9);
@@ -1550,9 +1600,17 @@ async function downloadPDF() {
     doc.text(`Cartela #${card.numero}`, x + cardW / 2, fy + FOOTER_H - 1.5, { align: 'center' });
   }
 
-  doc.save(`bingo_cartelas_${allCards.length}.pdf`);
+  // ── Marca todas as cartelas exportadas no IndexedDB ───────
+  const marked = pendingCards.map(c => ({ ...c, downloaded: true }));
+  await dbPutMany(marked);
+  await loadAll();
+
+  // ── Atualiza campo "Número inicial" para o próximo número ─
+  document.getElementById('numInicio').value = lastNum + 1;
+
+  doc.save(`bingo_${firstNum}_a_${lastNum}.pdf`);
   showLoading(false);
-  toast(`✅ PDF gerado com ${allCards.length} cartela(s)!`, 'success');
+  toast(`✅ PDF gerado: Cartelas #${firstNum} a #${lastNum} (${pendingCards.length} cartela(s))`, 'success');
 }
 
 // ────────────────────────────────────────────────────────
