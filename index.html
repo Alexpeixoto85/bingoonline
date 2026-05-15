@@ -713,9 +713,9 @@
     .badge span { font-size: 14px; }
     .btn-outline { padding: 8px 12px; font-size: 13px; }
 
-    main { padding: 12px 10px; }
+    main { padding: 10px 8px; }
 
-    .panel { padding: 16px 14px; margin-bottom: 14px; }
+    .panel { padding: 14px 10px; margin-bottom: 12px; }
     .panel-title { font-size: 16px; margin-bottom: 14px; }
 
     /* Formulário: 2 colunas para qtd + num inicial, casa livre abaixo sozinha */
@@ -742,13 +742,25 @@
       gap: 5px;
     }
 
-    /* Cartelas: 2 colunas compactas */
+    /* Cartelas: 2 colunas — células sem aspect-ratio para não vazar */
     .cards-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .card-cell { font-size: 13px; min-height: 30px; }
-    .bingo-letter { font-size: 14px; padding: 7px 2px; }
-    .card-number { font-size: 11px; }
-    .card-footer { padding: 5px 10px; }
-    .card-delete { font-size: 14px; }
+    .bingo-card { min-width: 0; width: 100%; }
+    .card-header { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .card-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .card-cell {
+      font-size: 11px;
+      min-height: 0;
+      aspect-ratio: 1;
+      padding: 2px;
+      word-break: break-all;
+      overflow: hidden;
+    }
+    .card-cell.free { font-size: 8px; }
+    .card-cell.marked::after { inset: 2px; }
+    .bingo-letter { font-size: 13px; padding: 6px 1px; letter-spacing: 0; }
+    .card-number { font-size: 10px; }
+    .card-footer { padding: 4px 8px; }
+    .card-delete { font-size: 13px; }
 
     /* Cards header */
     .cards-header { gap: 8px; }
