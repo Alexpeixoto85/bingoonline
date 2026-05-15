@@ -63,7 +63,7 @@
   .logo-text { font-family: 'Fredoka One', cursive; font-size: 26px; color: var(--accent1); letter-spacing: 1px; }
   .logo-sub { font-size: 12px; color: var(--text-muted); margin-top: -4px; }
 
-  .header-right { margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .header-right { margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; flex-shrink: 0; }
 
   .badge {
     background: var(--surface2);
@@ -700,18 +700,95 @@
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    header { padding: 14px 16px; }
-    .logo-text { font-size: 20px; }
-    .controls-grid { grid-template-columns: 1fr 1fr; }
-    .cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .card-cell { font-size: 14px; min-height: 32px; }
-    .bingo-letter { font-size: 16px; padding: 8px 2px; }
-    main { padding: 16px 10px; }
+  @media (max-width: 640px) {
+    header {
+      padding: 12px 14px;
+      gap: 10px;
+    }
+    .logo-ball { width: 38px; height: 38px; font-size: 17px; }
+    .logo-text { font-size: 19px; }
+    .logo-sub { font-size: 11px; }
+    .header-right { gap: 6px; }
+    .badge { padding: 5px 10px; font-size: 12px; }
+    .badge span { font-size: 14px; }
+    .btn-outline { padding: 8px 12px; font-size: 13px; }
+
+    main { padding: 12px 10px; }
+
+    .panel { padding: 16px 14px; margin-bottom: 14px; }
+    .panel-title { font-size: 16px; margin-bottom: 14px; }
+
+    /* Formulário: 2 colunas para qtd + num inicial, casa livre abaixo sozinha */
+    .controls-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .controls-grid .form-group:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+    .form-group label { font-size: 11px; margin-bottom: 6px; }
+    .form-group input, .form-group select { padding: 10px 12px; font-size: 14px; }
+
+    /* Botões: 2×2 grid em vez de linha única */
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .btn-group .btn {
+      justify-content: center;
+      padding: 11px 8px;
+      font-size: 13px;
+      gap: 5px;
+    }
+
+    /* Cartelas: 2 colunas compactas */
+    .cards-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .card-cell { font-size: 13px; min-height: 30px; }
+    .bingo-letter { font-size: 14px; padding: 7px 2px; }
+    .card-number { font-size: 11px; }
+    .card-footer { padding: 5px 10px; }
+    .card-delete { font-size: 14px; }
+
+    /* Cards header */
+    .cards-header { gap: 8px; }
+    .cards-header .panel-title { font-size: 15px; }
+    #perPageSel { font-size: 13px; padding: 8px 10px; }
+
+    /* Paginação */
+    .pagination { gap: 5px; margin-top: 16px; }
+    .page-btn { width: 32px; height: 32px; font-size: 13px; }
+
+    /* Toast */
+    .toast-container { bottom: 16px; right: 10px; left: 10px; align-items: stretch; }
+    .toast { max-width: 100%; font-size: 13px; padding: 12px 14px; }
+
+    /* Modal globo */
+    .globe-modal .modal { padding: 20px 16px; }
+    .globe-wrap { width: 180px; height: 180px; }
+    .globe-svg { width: 180px; height: 180px; }
+    .globe-current-letter { font-size: 22px; }
+    .globe-current-num { font-size: 42px; }
+    .globe-controls { gap: 8px; }
+    .globe-controls .btn { padding: 10px 14px; font-size: 13px; }
+    .drawn-balls-list { max-height: 90px; }
+    .drawn-ball { width: 30px; height: 30px; font-size: 11px; }
+    .bingo-rules-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .rule-btn { padding: 8px 4px 6px; }
+    .rule-btn svg { width: 28px; height: 28px; }
+    .rule-btn-label { font-size: 10px; }
+    .last-ball-announce { font-size: 16px; }
+
+    /* Modal genérico */
+    .modal { padding: 20px 16px; border-radius: 14px; }
+    .modal h2 { font-size: 18px; }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 360px) {
     .cards-grid { grid-template-columns: 1fr; }
+    .btn-group { grid-template-columns: 1fr; }
+    .controls-grid { grid-template-columns: 1fr; }
+    .controls-grid .form-group:nth-child(3) { grid-column: auto; }
   }
 </style>
 </head>
